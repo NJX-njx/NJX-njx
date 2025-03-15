@@ -26,7 +26,7 @@
 
 ### 开源项目
 
-[![](https://github-readme-stats.vercel.app/api/pin/?username=NJX-njx&repo=mp4To4K-rust)](https://github.com/NJX-njx/mp4To4K-rust)
+[![](https://github-readme-stats.vercel.app/api/pin/?username=NJX-njx&repo=YOLOv8-pt)](https://github.com/NJX-njx/YOLOv8-pt)
 <br><br><br>
 
 ### Github 活跃度
