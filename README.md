@@ -9,7 +9,7 @@
  <img align="right" alt="GIF" src="./images/code.gif" width="430" height="100%" />
 
 
--   <a href="https://www.zhihu.com/people/27-30-70-68-27"><code><img height="20" width="50" src="./images/zhihu.png"></code></a>：知乎优秀作者，发表了许多优秀文章
+-   <a href="https://www.zhihu.com/people/27-30-70-68-27"><code><img height="20" width="50" ></code></a>：知乎优秀作者，发表了许多优秀文章
 
 ### **技术栈:**
 
