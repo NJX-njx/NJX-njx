@@ -1,111 +1,186 @@
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=36BCF7&center=true&vCenter=true&width=600&lines=Hello+World!+%F0%9F%91%8B;Welcome+to+my+GitHub+Profile!;%E5%8C%97%E4%BA%AC%E7%90%86%E5%B7%A5%E5%A4%A7%E5%AD%A6+-+%E5%80%AA%E5%AE%B6%E5%85%B4;AI+%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%88%B1%E5%A5%BD%E8%80%85+%F0%9F%92%BB;Open+Source+Contributor+%E2%9C%A8" alt="Typing SVG" />
+  <img src="./assets/hero-banner.svg" alt="NJX Profile Banner" width="100%" />
 </div>
 
-<div align="center">
-  <img src="https://count.getloli.com/get/@NJX-njx?theme=rule34" alt="Profile Views" />
-</div>
+<p align="center">
+  <a href="#-mission-control">Mission Control</a> ·
+  <a href="#-pinned">Pinned</a> ·
+  <a href="#-labs-playground">Labs & Playground</a> ·
+  <a href="#-tech-universe">Tech Universe</a> ·
+  <a href="#-live-telemetry">Live Telemetry</a> ·
+  <a href="#-connect">Connect</a>
+</p>
 
----
-
-## 👋 关于我
-
-<div align="center">
-  <img align="right" alt="Coding GIF" src="./images/code.gif" width="400" height="300" />
-</div>
-
-- 🎓 **北京理工大学** 在读学生
-- 🤖 **AI 大模型爱好者**，专注于深度学习与计算机视觉
-- 💻 **全栈开发者**，热爱前端与后端技术
-- 🌱 正在学习 **机器学习**、**深度学习** 和 **计算机视觉**
-- 👯 喜欢参与开源项目讨论和贡献
-- 📝 在 [知乎](https://www.zhihu.com/people/27-30-70-68-27) 分享技术文章
-- ⚡ 有趣的事实：我可以用多种编程语言写 "Hello World"
-
----
-
-## 🛠️ 技术栈
-
-### 前端技术
-<div align="center">
-  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" alt="Vue.js" />
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
-</div>
-
-### 构建工具 & CSS
-<div align="center">
-  <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=black" alt="Webpack" />
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" alt="Sass" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-</div>
-
-### 后端 & 其他
-<div align="center">
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch" />
-</div>
-
----
-
-## 📊 GitHub 统计
-
-<div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=NJX-njx&show_icons=true&theme=vue&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&langs_count=8&theme=vue"/>
-</div>
-
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=NJX-njx&theme=vue" alt="GitHub Streak" />
-</div>
-
----
-
-## 🚀 开源项目
-
-<div align="center">
-  <a href="https://github.com/NJX-njx/YOLOv8-pt">
-    <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=NJX-njx&repo=YOLOv8-pt&theme=vue" />
-  </a>
-</div>
-
----
-
-## 📈 贡献活动
-
-<div align="center">
-  <img src="https://activity-graph.herokuapp.com/graph?username=NJX-njx&theme=dracula&bg_color=0d1117&color=5BCDEC&line=5BCDEC&point=FFFFFF&hide_border=true" alt="GitHub Activity Graph" />
-</div>
-
----
-
-## 🌐 社交媒体
-
-<div align="center">
-  <a href="https://www.zhihu.com/people/27-30-70-68-27">
-    <img src="https://img.shields.io/badge/知乎-0084FF?style=for-the-badge&logo=zhihu&logoColor=white" alt="知乎" />
-  </a>
+<p align="center">
   <a href="https://github.com/NJX-njx">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://readme-typing-svg.demolab.com?font=SF+Mono&weight=500&size=16&pause=1200&color=0969DA&center=true&vCenter=true&multiline=false&repeat=true&width=620&lines=Multimodal+%F0%9F%A4%96+%7C+Vision+Intelligence+%7C+Research-driven+%26+Shipping+impact" alt="Typing intro banner (compact)" />
   </a>
-</div>
+</p>
 
 ---
 
-## 💬 联系我
+## 🚀 Mission Control
 
-<div align="center">
-  <p>📧 邮箱: [您的邮箱]</p>
-  <p>💼 欢迎技术交流与合作！</p>
-</div>
+```
+┌────────────────────────────────────────────────────────────┐
+│ NJX / 001 · status: OPERATIONAL                            │
+│ focus: multimodal foundation models · vision intelligence  │
+│ mode : shipping-impact · research-driven                   │
+└────────────────────────────────────────────────────────────┘
+```
+
+- 🎓 **北京理工大学 · CS 在读** —— 机器视觉 & 多模态感知
+- 🧠 **AI 大模型与 Agent 架构探索者** —— 关注模型可解释性与应用落地
+- 🧰 **全栈实践者** —— 从模型训练、MLOps 到前端体验的端到端产品化
+- ☁️ **开源贡献者** —— 将实验室里的 idea 变成可复用的工具
+
+> 「把科研里的灵感变成真实世界的体验，是我每天写代码的理由。」
 
 ---
 
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=NJX-njx&label=Profile%20views&color=0e75b6&style=flat" alt="Profile Views" />
+## 📌 Pinned
+
+
+| 仓库 | 简介 |
+| --- | --- |
+| <a href="https://github.com/NJX-njx/YOLOv8-pt">YOLOv8-pt</a> <sub>• Python</sub> | 自主优化视觉检测 pipeline，融合自蒸馏与数据合成策略；推理速度提升约 18%。 |
+| <a href="https://github.com/NJX-njx/game-demo">game-demo</a> <sub>• TypeScript</sub> | 基于 WebGL/WebGPU 的交互式小游戏实验场，探索实时渲染与物理。 |
+| <a href="https://github.com/NJX-njx/gemini-cli">gemini-cli</a> <sub>• TypeScript</sub> | 便捷的多模态 LLM 命令行助手，支持流式输出与多轮上下文。 |
+| <a href="https://github.com/NJX-njx/explainai">explainai</a> <sub>• Python</sub> | 面向可解释性的可视化工具箱，提供 Grad-CAM/Attention rollout 等。 |
+
+---
+
+## 🧪 Labs & Playground
+
+<div align="right">
+  <!-- 绿色脉冲点：data URI 内联 SVG，兼容 GitHub 渲染 -->
+  <img alt="status pulse" width="14" height="14" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+    <defs>
+      <radialGradient id='g' cx='50%' cy='50%' r='50%'>
+        <stop offset='0%' stop-color='%2334d399' stop-opacity='1' />
+        <stop offset='100%' stop-color='%2334d399' stop-opacity='0' />
+      </radialGradient>
+    </defs>
+    <circle cx='12' cy='12' r='3' fill='%2322c55e'>
+      <animate attributeName='r' values='3;6;3' dur='1.8s' repeatCount='indefinite' />
+      <animate attributeName='opacity' values='1;0.6;1' dur='1.8s' repeatCount='indefinite' />
+    </circle>
+    <circle cx='12' cy='12' r='10' fill='url(%23g)'>
+      <animate attributeName='r' values='6;12;6' dur='1.8s' repeatCount='indefinite' />
+      <animate attributeName='opacity' values='0.35;0;0.35' dur='1.8s' repeatCount='indefinite' />
+    </circle>
+  </svg>" />
 </div>
+
+| 模块 | Capsule | 亮点 |
+| --- | --- | --- |
+| **Vision Flow** | <img alt="pulse green" width="10" height="10" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%2322c55e'><animate attributeName='r' values='3;4.5;3' dur='1.6s' repeatCount='indefinite'/></circle></svg>" /> [YOLOv8-pt](https://github.com/NJX-njx/YOLOv8-pt) | 自主优化视觉检测 pipeline，融合自蒸馏与数据合成策略，推理速度提升 18%。 |
+| **Agent Studio** | <img alt="pulse amber" width="10" height="10" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%23f59e0b'><animate attributeName='r' values='3;4.5;3' dur='1.6s' repeatCount='indefinite'/></circle></svg>" /> *即将开源* | 多模态 Agent 工作台，支持视觉问答、知识库检索、流程可视化。 |
+| **Interactive CV** | <img alt="pulse blue" width="10" height="10" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%230ea5e9'><animate attributeName='r' values='3;4.5;3' dur='1.6s' repeatCount='indefinite'/></circle></svg>" /> [体验 Demo](https://github.com/NJX-njx?tab=repositories) | 用 WebGPU + Three.js 构建的实时 3D 简历，让科研成果可“看见”。 |
+
+### 🔭 当前关注的 3 个问题
+
+1. 如何让视觉模型的推理链路更具可解释性？
+2. 多模态 Agent 的上下文管理能否做到“可编排”？
+3. 前端交互如何与 AI 推理结果协同，创造沉浸式体验？
+
+<details>
+  <summary><b>展开查看 · 最近的实验记录</b></summary>
+
+  - 🔬 2025-09 · 完成一个用于工业目检的蒸馏实验，对比 4 种温度系数设置
+  - 🛰️ 2025-08 · 构建多模态指标仪表板，从 TOF 深度信息矫正姿态估计
+  - 🧭 2025-07 · 联合几位同学共建开源 Agent 工作流模版库
+
+ </details>
+
+---
+
+## 🌌 Tech Universe
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>Core Stack</h3>
+      <ul>
+        <li>前端：Vue / Nuxt · React / Next.js · Three.js · Vite</li>
+        <li>后端：Go · Python · FastAPI · gRPC · PostgreSQL</li>
+        <li>AI：PyTorch · Lightning · OpenVINO · TensorRT</li>
+        <li>MLOps：Weights & Biases · MLflow · Docker · K8s</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>Design & Ops</h3>
+      <ul>
+        <li>设计系统：Tailwind · Sass · Radix · Element Plus</li>
+        <li>体验追踪：Storybook · Chromatic · Playwright</li>
+        <li>效率工具：Neovim + VS Code · Zed · Raycast</li>
+        <li>可视化：ECharts · Deck.gl · Observable Plot</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<details>
+  <summary><b>AI 研究里程碑（2024-2025）</b></summary>
+
+  | 年份 | 事件 | 关键词 |
+  | --- | --- | --- |
+  | 2025 | 建立「Agent Studio」原型，封装多模态 Agent 编排 | #LLM #Workflow #UI/UX |
+  | 2025 | 完成跨模态检索毕业设计，并转化为开源实践教程 | #CLIP #知识蒸馏 |
+  | 2025 | 加入学校创新实践基地，启动第一批开源贡献 | #OpenSource #Community |
+
+</details>
+
+---
+
+## 📡 Live Telemetry
+
+<details open>
+  <summary><b>GitHub · 近况</b></summary>
+  <p align="center">
+    <img src="https://github-readme-stats.vercel.app/api?username=NJX-njx&show_icons=true&theme=transparent&hide_border=true" alt="GitHub Stats (透明主题)" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=transparent&hide_border=true" alt="Top Languages (透明主题)" />
+  </p>
+  <p align="center">
+    <img src="https://streak-stats.demolab.com?user=NJX-njx&theme=transparent&hide_border=true&date_format=%5BY.%5Dn.j" alt="GitHub Streak" />
+  </p>
+  <p align="center">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=NJX-njx&theme=github-compact&hide_border=true&radius=8&area=true" alt="Contribution Activity Graph" />
+  </p>
+</details>
+
+<details>
+  <summary><b>Target · 2025 OKR</b></summary>
+  <ul>
+    <li>📚 写完「多模态 Agent 实战手册」，计划 30 篇章节</li>
+    <li>🧰 发布 2 个工业视觉相关的开源工具包</li>
+    <li>🌍 线下分享 3 次，把实际落地经验讲给更多工程师</li>
+  </ul>
+</details>
+
+<details>
+  <summary><b>下一步要发布的内容（自动更新预留）</b></summary>
+
+  ```md
+  <!-- roadmap:auto-update:start -->
+  - [ ] 多模态 Agent UI 组件库
+  - [ ] YOLO 推理性能可视化仪表板
+  - [ ] 学校课题组协作手册
+  <!-- roadmap:auto-update:end -->
+  ```
+
+</details>
+
+---
+
+## 🤝 Connect
+
+- 📮 邮箱：<a href="">3771829673@qq.com</a>
+- 🧾 知乎：<a href="https://www.zhihu.com/people/27-30-70-68-27">@NJX</a>
+- 🛰️ GitHub：<a href="https://github.com/NJX-njx">@NJX-njx</a>
+- ✉️ 欢迎就 AI / 全栈 / 开源合作随时联系！
+
+<p align="center">
+  <sub>最后更新：2025 · stay foolish，stay hungry保持热情。</sub>
+</p>
