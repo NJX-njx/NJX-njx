@@ -108,8 +108,8 @@ curl -X POST https://api.njx.dev/v1/contact \
   }'
 ```
 
-```json
-# Server Response
+```jsonc
+// Server Response
 {
   "status": "200 OK",
   "message": "Connection established. Ready to collaborate.",
