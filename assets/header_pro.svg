@@ -1,0 +1,62 @@
+<svg width="1500" height="600" xmlns="http://www.w3.org/2000/svg" style="background-color: #0d1117;">
+<defs>
+<linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#58a6ff;stop-opacity:0" />
+<stop offset="50%" style="stop-color:#58a6ff;stop-opacity:0.5" />
+<stop offset="100%" style="stop-color:#bc8cff;stop-opacity:0" />
+</linearGradient>
+<pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+<path d="M 20 0 L 0 0 0 20" fill="none" stroke="#30363d" stroke-width="0.5" opacity="0.3"/>
+</pattern>
+</defs>
+<rect width="100%" height="100%" fill="url(#smallGrid)" />
+<rect x="50" y="50" width="300" height="150" rx="10" fill="#30363d" opacity="0.2" />
+<rect x="1150" y="400" width="300" height="150" rx="10" fill="#30363d" opacity="0.2" />
+<path d="M 0 220.0 L 0 247.0 L 100 190.0 L 200 208.0 L 300 235.0 L 400 198.0 L 500 248.0 L 600 210.0 L 700 214.0 L 800 225.0 L 900 215.0 L 1000 240.0 L 1100 221.0 L 1200 197.0 L 1300 236.0 L 1400 231.0 L 1500 197.0 " stroke="#58a6ff" stroke-width="2" fill="none" opacity="0.1" />
+<path d="M 0 260.0 L 0 289.0 L 100 231.0 L 200 234.0 L 300 263.0 L 400 260.0 L 500 249.0 L 600 269.0 L 700 274.0 L 800 282.0 L 900 255.0 L 1000 274.0 L 1100 267.0 L 1200 257.0 L 1300 237.0 L 1400 230.0 L 1500 288.0 " stroke="#bc8cff" stroke-width="2" fill="none" opacity="0.15000000000000002" />
+<path d="M 0 300.0 L 0 297.0 L 100 275.0 L 200 299.0 L 300 316.0 L 400 312.0 L 500 303.0 L 600 287.0 L 700 272.0 L 800 271.0 L 900 271.0 L 1000 277.0 L 1100 273.0 L 1200 320.0 L 1300 314.0 L 1400 285.0 L 1500 302.0 " stroke="#58a6ff" stroke-width="2" fill="none" opacity="0.2" />
+<path d="M 0 340.0 L 0 353.0 L 100 321.0 L 200 355.0 L 300 336.0 L 400 339.0 L 500 321.0 L 600 364.0 L 700 330.0 L 800 327.0 L 900 355.0 L 1000 360.0 L 1100 348.0 L 1200 346.0 L 1300 330.0 L 1400 326.0 L 1500 311.0 " stroke="#bc8cff" stroke-width="2" fill="none" opacity="0.25" />
+<path d="M 0 380.0 L 0 366.0 L 100 354.0 L 200 357.0 L 300 380.0 L 400 368.0 L 500 381.0 L 600 382.0 L 700 364.0 L 800 378.0 L 900 374.0 L 1000 390.0 L 1100 398.0 L 1200 355.0 L 1300 356.0 L 1400 359.0 L 1500 405.0 " stroke="#58a6ff" stroke-width="2" fill="none" opacity="0.30000000000000004" />
+
+    <!-- Glass Card -->
+    <rect x="350.0" y="150.0" width="800" height="300" rx="15" 
+          fill="#161b22" stroke="#30363d" stroke-width="1" opacity="0.9" />
+    
+    <!-- Top Bar of Card -->
+    <path d="M 350.0 190.0 L 1150.0 190.0" stroke="#30363d" stroke-width="1" />
+    <circle cx="370.0" cy="170.0" r="6" fill="#ff5f56" />
+    <circle cx="395.0" cy="170.0" r="6" fill="#ffbd2e" />
+    <circle cx="420.0" cy="170.0" r="6" fill="#27c93f" />
+    
+    <!-- Title in Card Header -->
+    <text x="750.0" y="175.0" text-anchor="middle" font-family="monospace" font-size="14" fill="#8b949e">
+        njx_profile.config
+    </text>
+
+    <!-- Main Content Text -->
+    <text x="750.0" y="280.0" text-anchor="middle" 
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" 
+          font-weight="800" font-size="72" fill="#c9d1d9" letter-spacing="-1">
+        NJX
+    </text>
+    
+    <text x="750.0" y="340.0" text-anchor="middle" 
+          font-family="monospace" font-size="20" fill="#58a6ff" letter-spacing="4">
+        ARCHITECTING INTELLIGENCE
+    </text>
+    
+    <!-- Decorative Tags -->
+    <rect x="590.0" y="380.0" width="100" height="24" rx="12" fill="#30363d" opacity="0.5"/>
+    <text x="640.0" y="396.0" text-anchor="middle" font-family="monospace" font-size="12" fill="#3fb950">● RESEARCH</text>
+    
+    <rect x="700.0" y="380.0" width="100" height="24" rx="12" fill="#30363d" opacity="0.5"/>
+    <text x="750.0" y="396.0" text-anchor="middle" font-family="monospace" font-size="12" fill="#58a6ff">● BUILD</text>
+    
+    <rect x="810.0" y="380.0" width="100" height="24" rx="12" fill="#30363d" opacity="0.5"/>
+    <text x="860.0" y="396.0" text-anchor="middle" font-family="monospace" font-size="12" fill="#bc8cff">● SHIP</text>
+    
+
+    <line x1="0" y1="598" x2="1500" y2="598" stroke="#58a6ff" stroke-width="4" />
+    <rect x="0" y="596" width="1500" height="4" fill="url(#glow)" />
+    
+</svg>
