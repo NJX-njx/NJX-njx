@@ -1,101 +1,105 @@
 <div align="center">
-  <img src="assets/header_arch.svg" width="100%" alt="NJX Model Architecture">
+  <img src="assets/header_interactive.svg" width="100%" alt="NJX Interactive Architecture">
 </div>
 
 <div align="center">
   <h3><code>NJX-70B-Instruct</code></h3>
-  <p><em>A fine-tuned researcher model optimized for multimodal intelligence and agentic workflows.</em></p>
+  <p><em>Interactive Model Visualization. Click the nodes above to navigate the system architecture.</em></p>
 </div>
 
 ---
 
-### 🧠 Model Architecture & Weights
+<!-- Terminal / IDE Layout -->
+<table>
+<tr>
+<td valign="top" width="25%">
 
-<details open>
-<summary><strong>Layer 1: Input Embeddings (Core Identity)</strong></summary>
+### 📂 Explorer
+
+```bash
+.
+├── 📁 core_identity
+│   ├── bio.txt
+│   └── config.json
+├── 📁 research_frontiers
+│   ├── vision.py
+│   ├── llm.py
+│   └── agents.py
+├── 📁 deployments
+│   ├── yolo_pt
+│   └── gemini-cli
+└── 📁 telemetry
+    └── stats.log
+```
+
 <br/>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=transparent&hide_border=true&title_color=58a6ff&text_color=8b949e" width="100%" />
+</div>
+
+</td>
+<td valign="top" width="75%">
+
+<h3 id="user-content-core-identity"><code>cat core_identity/bio.txt</code></h3>
 
 > **"Bridging the gap between SOTA Research and Production Engineering."**
 
 I treat AI research not just as academic exploration, but as **system architecture**. My goal is to understand the emergent properties of large models and engineer the infrastructure that makes them accessible.
 
-*   **Context Window**: Infinite Learner
-*   **Training Data**: Computer Vision, LLMs, Distributed Systems
-*   **Base Model**: Beijing Institute of Technology (BIT) · CS
-
-</details>
-
-<details>
-<summary><strong>Layer 2: Multi-Head Attention (Research Focus)</strong></summary>
-<br/>
-
-```mermaid
-graph LR
-    subgraph "Head 1: Vision"
-    A[ViT Architecture] --> B(Object Detection)
-    B --> C(Neural Rendering)
-    end
-    
-    subgraph "Head 2: Language"
-    D[LLM Reasoning] --> E(PEFT / LoRA)
-    E --> F(KV Cache Opt)
-    end
-    
-    subgraph "Head 3: Agents"
-    G[Tool Use] --> H(Planning)
-    H --> I(Multi-Agent Sim)
-    end
-    
-    style A fill:#1f2937,stroke:#58a6ff,color:#fff
-    style D fill:#1f2937,stroke:#bc8cff,color:#fff
-    style G fill:#1f2937,stroke:#3fb950,color:#fff
-```
-
-</details>
-
-<details>
-<summary><strong>Layer 3: Feed Forward Networks (Selected Deployments)</strong></summary>
-<br/>
-
-| **Tensor** | **Activation** | **Output** |
-| :--- | :--- | :--- |
-| **[YOLOv8-pt](https://github.com/NJX-njx/YOLOv8-pt)** | `ReLU` | Optimized vision pipeline with self-distillation. **+18% Inference Speed**. |
-| **[gemini-cli](https://github.com/NJX-njx/gemini-cli)** | `SiLU` | Terminal-native multimodal assistant. Stream-first architecture. |
-| **[explainai](https://github.com/NJX-njx/explainai)** | `Sigmoid` | Visualizing attention maps & Grad-CAM for model transparency. |
-| **[game-demo](https://github.com/NJX-njx/game-demo)** | `Tanh` | WebGL/WebGPU physics playground. |
-
-</details>
-
-<details>
-<summary><strong>Layer 4: Output Probabilities (Tech Stack)</strong></summary>
-<br/>
-
-```mermaid
-pie title "Compute Allocation"
-    "PyTorch & HF" : 45
-    "TypeScript & WebGPU" : 20
-    "C++ & CUDA" : 15
-    "Docker & MLOps" : 20
-```
-
-</details>
+*   **Affiliation**: Beijing Institute of Technology (BIT) · CS
+*   **Focus**: AI Inference, Model Architecture, Embodied Intelligence
 
 ---
 
-### 🔌 Inference API (Connect)
+<h3 id="user-content-research-frontiers"><code>python3 research_frontiers/main.py</code></h3>
 
-```bash
-curl -X POST https://api.njx.dev/v1/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "njx-researcher",
-    "messages": [
-      {"role": "user", "content": "Let's collaborate on AI Infra!"}
-    ]
-  }'
+```python
+class ResearchInterests(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.vision = "Vision Transformers (ViT), Object Detection (YOLO)"
+        self.llm = "Architecture Design, PEFT, KV Cache Optimization"
+        self.agents = "Multi-Agent Orchestration, Tool Use & Planning"
+        self.infra = "High-performance Inference, Quantization"
+
+    def forward(self, x):
+        return self.agents(self.llm(self.vision(x)))
 ```
 
+---
+
+<h3 id="user-content-selected-deployments"><code>ls -la deployments/</code></h3>
+
+| Permission | Owner | Name | Description | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| `drwxr-xr-x` | `njx` | **[YOLOv8-pt](https://github.com/NJX-njx/YOLOv8-pt)** | Optimized vision pipeline (+18% speed) | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[gemini-cli](https://github.com/NJX-njx/gemini-cli)** | Terminal-native multimodal assistant | ![Stable](https://img.shields.io/badge/Stable-blue?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[explainai](https://github.com/NJX-njx/explainai)** | Visualizing attention maps & Grad-CAM | ![Beta](https://img.shields.io/badge/Beta-orange?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[game-demo](https://github.com/NJX-njx/game-demo)** | WebGL/WebGPU physics playground | ![Archived](https://img.shields.io/badge/Archived-inactive?style=flat-square) |
+
+---
+
+<h3 id="interactive-demo"><code>./run_visualization.sh</code></h3>
+
+> *Note: Due to GitHub security policies, WebGL contexts cannot run directly in READMEs. Below is a preview of the interactive visualization.*
+
 <div align="center">
+  <a href="https://bbycroft.net/llm">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L1R1TVThqceK6F8h3y/giphy.gif" width="100%" alt="LLM Visualization Demo" style="border-radius: 10px; border: 1px solid #30363d;">
+  </a>
+  <p><em>Click the preview above to launch the full 3D interactive model explorer (External Link).</em></p>
+</div>
+
+</td>
+</tr>
+</table>
+
+---
+
+<div align="center">
+  <code>user@njx:~$ connect --method=email</code> <br/>
+  <br/>
   <a href="mailto:your-email@example.com"><img src="https://img.shields.io/badge/Email-Send_Prompt-3fb950?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
   <a href="https://github.com/NJX-njx"><img src="https://img.shields.io/badge/GitHub-Pull_Request-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
 </div>
