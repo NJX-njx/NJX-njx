@@ -34,9 +34,24 @@
 
 <br/>
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=transparent&hide_border=true&title_color=58a6ff&text_color=8b949e" width="100%" />
-</div>
+### 🧠 Model Arch
+
+```yaml
+# NJX-Internal-v1
+architecture:
+  input:
+    - source: "Curiosity"
+    - dtype: "Raw_Data"
+  encoder:
+    - layer: "CS_Fundamentals"
+    - activation: "Deep_Learning"
+  attention:
+    - heads: ["Vision", "LLM"]
+    - mechanism: "System_Design"
+  decoder:
+    - task: "Engineering"
+    - output: "Innovation"
+```
 
 </td>
 <td valign="top" width="75%">
@@ -80,16 +95,27 @@ class ResearchInterests(nn.Module):
 
 ---
 
-<h3 id="interactive-demo"><code>./run_visualization.sh</code></h3>
+<h3 id="contact-api"><code>curl -X POST https://api.njx.dev/contact</code></h3>
 
-> *Note: Due to GitHub security policies, WebGL contexts cannot run directly in READMEs. Below is a preview of the interactive visualization.*
+```bash
+# Initialize connection handshake
+curl -X POST https://api.njx.dev/v1/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sender": "visitor",
+    "intent": "collaboration",
+    "message": "Let's build the future."
+  }'
+```
 
-<div align="center">
-  <a href="https://bbycroft.net/llm">
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eW54eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L1R1TVThqceK6F8h3y/giphy.gif" width="100%" alt="LLM Visualization Demo" style="border-radius: 10px; border: 1px solid #30363d;">
-  </a>
-  <p><em>Click the preview above to launch the full 3D interactive model explorer (External Link).</em></p>
-</div>
+```json
+// Server Response
+{
+  "status": "200 OK",
+  "message": "Connection established. Ready to collaborate.",
+  "latency": "12ms"
+}
+```
 
 </td>
 </tr>
@@ -98,8 +124,6 @@ class ResearchInterests(nn.Module):
 ---
 
 <div align="center">
-  <code>user@njx:~$ connect --method=email</code> <br/>
-  <br/>
-  <a href="mailto:your-email@example.com"><img src="https://img.shields.io/badge/Email-Send_Prompt-3fb950?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
-  <a href="https://github.com/NJX-njx"><img src="https://img.shields.io/badge/GitHub-Pull_Request-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+  <a href="mailto:your-email@example.com"><code>[ POST REQUEST ]</code></a> · 
+  <a href="https://github.com/NJX-njx"><code>[ GET REPO ]</code></a>
 </div>
