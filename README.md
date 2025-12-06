@@ -123,6 +123,24 @@ curl -X POST https://api.njx.dev/v1/contact \
 
 ---
 
+<h3 id="user-content-telemetry"><code>cat telemetry/stats.log</code></h3>
+
+<div align="center">
+  <!-- GitHub Trophies -->
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4" alt="NJX-njx Trophies" width="100%" />
+  </a>
+  <br/>
+  <br/>
+  <!-- GitHub Stats & Activity -->
+  <p>
+    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api?username=NJX-njx&show_icons=true&theme=dark&hide_border=true&bg_color=00000000" height="150" alt="NJX-njx Stats" />
+    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=dark&hide_border=true&bg_color=00000000" height="150" alt="NJX-njx Top Langs" />
+  </p>
+</div>
+
+---
+
 <div align="center">
   <a href="mailto:your-email@example.com"><code>[ POST REQUEST ]</code></a> · 
   <a href="https://github.com/NJX-njx"><code>[ GET REPO ]</code></a>
