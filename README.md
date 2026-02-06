@@ -12,7 +12,6 @@
 <!-- Terminal / IDE Layout -->
 <div align="center">
   <em>Note: The terminal/command blocks below are for visual flavor only and are not meant to be executed.</em><br/>
-  <em>说明：下面的终端/命令块为展示效果设计，并非可执行内容。</em>
 </div>
 
 <table>
