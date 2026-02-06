@@ -5,6 +5,7 @@
 <div align="center">
   <h3><code>NJX-70B-Instruct</code></h3>
   <p><em>Interactive Model Visualization. Click the nodes above to navigate the system architecture.</em></p>
+
 </div>
 
 ---
