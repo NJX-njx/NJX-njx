@@ -1,0 +1,43 @@
+name: Update Trophies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch trophies SVG
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://github-profile-trophy.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4"
+          TMP="assets/trophies.svg.tmp"
+          if ! curl -fsSL "$URL" -o "$TMP"; then
+            echo "Download failed; keeping existing trophies.svg"
+            exit 0
+          fi
+          if ! grep -q "<svg" "$TMP"; then
+            echo "Downloaded file is not SVG; aborting update"
+            exit 0
+          fi
+          mv "$TMP" "assets/trophies.svg"
+      - name: Commit if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/trophies.svg; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/trophies.svg
+          git commit -m "chore: update trophies.svg"
+          git push

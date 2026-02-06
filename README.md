@@ -128,7 +128,7 @@ curl -X POST https://api.njx.dev/v1/contact \
 <div align="center">
   <!-- GitHub Trophies -->
   <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4" alt="NJX-njx Trophies" width="100%" />
+    <img src="assets/trophies.svg" alt="NJX-njx Trophies" width="100%" />
   </a>
   <br/>
   <br/>

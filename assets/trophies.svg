@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="200" viewBox="0 0 1200 200" role="img" aria-label="GitHub trophies placeholder">
+  <rect width="1200" height="200" fill="none" />
+  <rect x="1" y="1" width="1198" height="198" rx="12" ry="12" fill="none" stroke="#3d3d3d" stroke-width="2" />
+  <text x="600" y="90" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace" font-size="20" fill="#a0a0a0">GitHub Trophies</text>
+  <text x="600" y="125" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace" font-size="14" fill="#6f6f6f">Snapshot unavailable. Run the update-trophies workflow to refresh.</text>
+</svg>
