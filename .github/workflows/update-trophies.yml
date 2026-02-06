@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          URL="https://github-profile-trophy.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4"
+          URL="https://github-trophies.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4"
           TMP="assets/trophies.svg.tmp"
           if ! curl -fsSL "$URL" -o "$TMP"; then
             echo "Download failed; keeping existing trophies.svg"
