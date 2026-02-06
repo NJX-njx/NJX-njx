@@ -142,6 +142,6 @@ curl -X POST https://api.njx.dev/v1/contact \
 ---
 
 <div align="center">
-  <a href="mailto:your-email@example.com"><code>[ POST REQUEST ]</code></a> · 
+  <a href="mailto:3771829673@qq.com"><code>[ POST REQUEST ]</code></a> · 
   <a href="https://github.com/NJX-njx"><code>[ GET REPO ]</code></a>
 </div>
