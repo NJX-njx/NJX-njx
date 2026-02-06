@@ -72,43 +72,6 @@ Linux          ██████
 Git            ██████
 ```
 
-<br/>
-
-### 📊 Status
-
-```
-$ htop --sort=priority
-─────────────────────
- PID  PRI  TASK
- 001  ■■■  LLM Inference
- 002  ■■■  Vision Models
- 003  ■■○  Embodied AI
- 004  ■○○  Blog Writing
-─────────────────────
- CPU [████████░░] 80%
- MEM [██████░░░░] 60%
- UPT  4y @ BIT · CS
-```
-
-<br/>
-
-### 📜 Git Log
-
-```
-$ git log --oneline
-─────────────────────
-e4f2c1a Exploring
-        embodied AI
-b7a31d0 Building
-        inference infra
-9c82ef1 Fine-tuning
-        LLMs (PEFT)
-3a1b0c2 YOLO detection
-        pipeline
-1f0e9d8 First commit
-        @ BIT CS
-```
-
 </td>
 <td valign="top" width="75%">
 
