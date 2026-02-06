@@ -95,17 +95,11 @@ class ResearchInterests(nn.Module):
 
 ---
 
-<h3 id="contact-api"><code>curl -X POST https://njx-njx.github.io/contact</code></h3>
+<h3 id="contact-api"><code>curl https://njx-njx.github.io/api/v1/contact.json</code></h3>
 
 ```bash
-# Initialize connection handshake
-curl -X POST https://njx-njx.github.io/api/v1/contact \
-  -H "Content-Type: application/json" \
-  -d '{
-    "sender": "visitor",
-    "intent": "collaboration",
-    "message": "Let's build the future."
-  }'
+# Initialize connection handshake (try it!)
+curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
 ```
 
 ```jsonc
@@ -114,6 +108,8 @@ curl -X POST https://njx-njx.github.io/api/v1/contact \
   "status": "200 OK",
   "message": "Connection established. Ready to collaborate.",
   "blog": "https://njx-njx.github.io",
+  "email": "3771829673@qq.com",
+  "github": "https://github.com/NJX-njx",
   "latency": "12ms"
 }
 ```
