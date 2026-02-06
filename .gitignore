@@ -1,1 +1,11 @@
 .DS_Store
+
+# VS Code 工作区文件
+*.code-workspace
+
+# VS Code 用户设置
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
