@@ -112,10 +112,11 @@ class ResearchInterests(nn.Module):
 
 | Permission | Owner | Name | Description | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| `drwxr-xr-x` | `njx` | **[YOLOv8-pt](https://github.com/NJX-njx/YOLOv8-pt)** | Optimized vision pipeline (+18% speed) | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
-| `drwxr-xr-x` | `njx` | **[gemini-cli](https://github.com/NJX-njx/gemini-cli)** | Terminal-native multimodal assistant | ![Stable](https://img.shields.io/badge/Stable-blue?style=flat-square) |
-| `drwxr-xr-x` | `njx` | **[explainai](https://github.com/NJX-njx/explainai)** | Visualizing attention maps & Grad-CAM | ![Beta](https://img.shields.io/badge/Beta-orange?style=flat-square) |
-| `drwxr-xr-x` | `njx` | **[game-demo](https://github.com/NJX-njx/game-demo)** | WebGL/WebGPU physics playground | ![Archived](https://img.shields.io/badge/Archived-inactive?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[computer-use-agent](https://github.com/NJX-njx/computer-use-agent)** | Agent implementation for Computer Use | ![Beta](https://img.shields.io/badge/Beta-orange?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[opencode](https://github.com/NJX-njx/opencode)** | Code generation system with execution and refinement | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[OpenClaw](https://github.com/NJX-njx/OpenClaw)** | Cross-platform C++ reimplementation of Captain Claw | ![Stable](https://img.shields.io/badge/Stable-blue?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[ernie5.0](https://github.com/NJX-njx/ernie5.0)** | Toolkit for Baidu's ERNIE 5.0 model | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[nanoGPT](https://github.com/NJX-njx/nanoGPT)** | Simple, hackable repository for training GPT models | ![Archived](https://img.shields.io/badge/Archived-inactive?style=flat-square) |
 
 ---
 
