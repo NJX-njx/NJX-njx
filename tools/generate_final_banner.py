@@ -11,7 +11,7 @@ import random
 CONFIG = {
     # Personal info (neofetch style)
     "name": "NJX",
-    "age": "22", 
+    "age": "19", 
     "work": "BIT · CS",
     "os": "macOS",
     "editor": "VS Code",

@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 CONFIG = {
     # Personal info (neofetch style) - matching yetone's format exactly
     "name": "NJX",
-    "age": "22",
+    "age": "19",
     "work": "BIT · CS",
     "os": "macOS",
     "editor": "VS Code",
