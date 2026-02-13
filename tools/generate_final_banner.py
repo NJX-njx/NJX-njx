@@ -128,7 +128,7 @@ def draw_info_panel(draw, x, y, font, small_font):
     return y
 
 
-def create_frame(ascii_img, frame_num, total_frames):
+def create_frame(ascii_img, frame_num, total_frames, bg_img=None):
     """Create a single animation frame."""
     # Get ASCII art dimensions
     ascii_w, ascii_h = ascii_img.size
@@ -138,11 +138,33 @@ def create_frame(ascii_img, frame_num, total_frames):
     total_width = ascii_w + panel_width + 40  # padding
     total_height = max(ascii_h + 40, 600)
     
-    # Create frame with dark background
-    frame = Image.new('RGBA', (total_width, total_height), (10, 15, 10, 255))
-    
-    # Paste ASCII art on left
-    frame.paste(ascii_img, (20, 20))
+    # Create frame with dark background or use original image
+    if bg_img is not None:
+        # Resize background to match ASCII art area
+        bg_resized = bg_img.resize((ascii_w, ascii_h), Image.Resampling.LANCZOS)
+        # Darken the background slightly
+        bg_darkened = ImageEnhance.Brightness(bg_resized).enhance(0.4)
+        # Add green tint
+        bg_array = bg_darkened.convert('RGB')
+        
+        # Create the full frame
+        frame = Image.new('RGBA', (total_width, total_height), (10, 15, 10, 255))
+        # Paste darkened background
+        frame.paste(bg_darkened.convert('RGBA'), (20, 20))
+        
+        # Make ASCII art semi-transparent and blend
+        ascii_rgba = ascii_img.convert('RGBA')
+        # Reduce ASCII opacity to blend with background
+        alpha = ascii_rgba.split()[3]
+        alpha = ImageEnhance.Brightness(alpha).enhance(0.85)
+        ascii_rgba.putalpha(alpha)
+        
+        # Composite ASCII over background
+        frame.paste(ascii_rgba, (20, 20), ascii_rgba)
+    else:
+        frame = Image.new('RGBA', (total_width, total_height), (10, 15, 10, 255))
+        # Paste ASCII art on left
+        frame.paste(ascii_img, (20, 20))
     
     # Draw info panel on right
     draw = ImageDraw.Draw(frame)
@@ -194,6 +216,15 @@ def main():
     ascii_img = Image.open(ascii_path).convert('RGBA')
     print(f"Loaded ASCII art: {ascii_img.size}")
     
+    # Load original girl.jpg as background
+    girl_path = os.path.join(project_dir, "images", "girl.jpg")
+    bg_img = None
+    if os.path.exists(girl_path):
+        bg_img = Image.open(girl_path)
+        print(f"Loaded background: {bg_img.size}")
+    else:
+        print("Warning: girl.jpg not found, using plain background")
+    
     # Generate frames
     frames = []
     total_frames = CONFIG["frames"]
@@ -201,7 +232,7 @@ def main():
     print(f"Generating {total_frames} frames...")
     for i in range(total_frames):
         print(f"  Frame {i+1}/{total_frames}")
-        frame = create_frame(ascii_img, i, total_frames)
+        frame = create_frame(ascii_img, i, total_frames, bg_img)
         frames.append(frame)
     
     # Save as GIF
