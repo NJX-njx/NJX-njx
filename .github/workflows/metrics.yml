@@ -1,49 +1,41 @@
-name: GitHub Metrics
+name: Metrics
 
 on:
-  # 每天 UTC 23:00（北京时间次日 07:00）自动更新
-  schedule:
-    - cron: "0 23 * * *"
-  # 手动触发
+  # Schedule daily updates
+  schedule: [{cron: "0 23 * * *"}]
+  # (optional) Run workflow manually
   workflow_dispatch:
-  # push 到 main/master 时触发
-  push:
-    branches: ["main", "master"]
-
-permissions:
-  contents: write
+  # (optional) Run workflow when pushing on master/main
+  push: {branches: ["master", "main"]}
 
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # ====== 基础配置 ======
           token: ${{ secrets.METRICS_TOKEN }}
+
           user: NJX-njx
-          template: classic
           base: header, activity, repositories, metadata
           config_timezone: Asia/Shanghai
           repositories_skipped: NJX-njx
-          config_order: base.header, isocalendar, languages, habits, stars, base.activity, base.repositories
-
-          # SVG 优化
           optimize: svg
           experimental_features: --optimize-svg
 
-          # ====== 📅 等距提交日历 ======
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
 
-          # ====== 🈷️ 编程语言分布 ======
           plugin_languages: yes
-          plugin_languages_ignored: html, css, scss, less
-          plugin_languages_limit: 8
-          plugin_languages_sections: most-used
-          plugin_languages_indepth: no
+          plugin_languages_ignored: javascript, html, css
+          plugin_languages_limit: 5
 
-          # ====== 💡 编码习惯 ======
+          plugin_lines: yes
+
+          plugin_stargazers: yes
+          plugin_stargazers_charts_type: chartist
+
           plugin_habits: yes
           plugin_habits_charts_type: classic
           plugin_habits_days: 14
@@ -51,14 +43,3 @@ jobs:
           plugin_habits_from: 200
           plugin_habits_languages_limit: 8
           plugin_habits_languages_threshold: 0%
-
-          # ====== ✨ Stargazers ======
-          plugin_stargazers: yes
-          plugin_stargazers_charts_type: chartist
-
-          # ====== 👨‍💻 代码行数变化 ======
-          plugin_lines: yes
-          plugin_lines_sections: base
-
-          # 输出文件名
-          filename: github-metrics.svg
