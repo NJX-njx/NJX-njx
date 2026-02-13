@@ -115,7 +115,7 @@ class ResearchInterests(nn.Module):
 | `drwxr-xr-x` | `njx` | **[computer-use-agent](https://github.com/NJX-njx/computer-use-agent)** | Agent implementation for Computer Use | ![Beta](https://img.shields.io/badge/Beta-orange?style=flat-square) |
 | `drwxr-xr-x` | `njx` | **[opencode](https://github.com/NJX-njx/opencode)** | Code generation system with execution and refinement | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
 | `drwxr-xr-x` | `njx` | **[OpenClaw](https://github.com/NJX-njx/OpenClaw)** | Cross-platform C++ reimplementation of Captain Claw | ![Stable](https://img.shields.io/badge/Stable-blue?style=flat-square) |
-| `drwxr-xr-x` | `njx` | **[ernie5.0](https://github.com/NJX-njx/ernie5.0)** | Toolkit for Baidu's ERNIE 5.0 model | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
+| `drwxr-xr-x` | `njx` | **[ernie5.0](https://github.com/NJX-njx/ernie5)** | Toolkit for Baidu's ERNIE 5.0 model | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
 | `drwxr-xr-x` | `njx` | **[code2video](https://github.com/NJX-njx/code2video)** | Code-to-video generation pipeline | ![Active](https://img.shields.io/badge/Active-success?style=flat-square) |
 | `drwxr-xr-x` | `njx` | **[nanoGPT](https://github.com/NJX-njx/nanoGPT)** | Simple, hackable repository for training GPT models | ![Archived](https://img.shields.io/badge/Archived-inactive?style=flat-square) |
 
