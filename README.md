@@ -15,6 +15,9 @@ If you like my work, please consider giving a ⭐ to my projects!
 ---
 
 <!-- ====== TERMINAL / IDE LAYOUT ====== -->
+<details>
+<summary><b>💻 Click to expand Terminal / IDE Layout</b></summary>
+
 <div align="center">
   <em>Note: The terminal/command blocks below are for visual flavor only and are not meant to be executed.</em>
 </div>
@@ -147,6 +150,8 @@ curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
 </td>
 </tr>
 </table>
+
+</details>
 
 ---
 
