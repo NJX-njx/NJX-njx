@@ -1,58 +1,52 @@
 """
-Generate a retro CRT terminal style GIF banner (like yetone's profile)
-Features:
-- ASCII art from image (left side)
-- Neofetch-style info panel (right side)
-- CRT scanlines & phosphor glow effect
-- Blinking cursor animation
-- Terminal prompt at bottom
+Generate a retro CRT terminal style GIF banner (exactly like yetone's profile)
+Key features to match yetone:
+- Bright green phosphor scanline background (not dark)
+- Large ASCII art taking up left half
+- Neofetch-style info on right
+- White/bright text for ASCII highlights
+- CRT curvature and glow
 """
 
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
-import math
 
 # ============ CONFIGURATION ============
 CONFIG = {
-    # Personal info (neofetch style)
+    # Personal info (neofetch style) - matching yetone's format exactly
     "name": "NJX",
-    "affiliation": "BIT · CS",
-    "focus": "AI Engineer",
-    "os": "Linux/macOS",
+    "age": "22",
+    "work": "BIT · CS",
+    "os": "macOS",
     "editor": "VS Code",
-    "languages": "Python, C++,\n            TypeScript, Go",
-    "skills": "Vision, LLM,\n         Agents, Infra",
+    "languages": ["Python, Go,", "TypeScript, Rust,", "C++, Bash"],
+    "skills": ["Vision, LLM,", "Agents, Infra"],
     
-    # Terminal
-    "prompt": "njx@dev$",
-    
-    # Colors (CRT green phosphor)
-    "bg_color": (10, 20, 10),
-    "text_color": (0, 255, 65),
-    "dim_color": (0, 180, 45),
-    "bright_color": (150, 255, 150),
+    # Terminal prompt
+    "prompt": "njx@mbp$",
     
     # Dimensions
-    "width": 1000,
-    "height": 500,
-    "ascii_width": 50,  # characters for ASCII art
+    "width": 1200,
+    "height": 700,
+    "ascii_width": 55,
     
     # Animation
-    "frames": 10,
-    "frame_duration": 150,  # ms per frame
+    "frames": 6,
+    "frame_duration": 250,
 }
 
-# ASCII characters from dark to light
-ASCII_CHARS = " .:-=+*#%@"
+# ASCII characters from dark to light (reversed for bright = white effect)
+ASCII_CHARS = " .,:;i1tfLCG08@"
 
 
 def load_font(size):
-    """Load a monospace font, fallback to default if not found."""
+    """Load a monospace font."""
     font_paths = [
-        "C:/Windows/Fonts/consola.ttf",  # Windows Consolas
-        "C:/Windows/Fonts/cour.ttf",      # Windows Courier
-        "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",  # Linux
-        "/System/Library/Fonts/Menlo.ttc",  # macOS
+        "C:/Windows/Fonts/consola.ttf",
+        "C:/Windows/Fonts/lucon.ttf",
+        "C:/Windows/Fonts/cour.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+        "/System/Library/Fonts/Menlo.ttc",
     ]
     for path in font_paths:
         if os.path.exists(path):
@@ -63,195 +57,228 @@ def load_font(size):
     return ImageFont.load_default()
 
 
-def image_to_ascii(image_path, width=50):
-    """Convert image to ASCII art string."""
+def image_to_ascii_with_brightness(image_path, width=55):
+    """Convert image to ASCII art, also return brightness values for coloring."""
     img = Image.open(image_path)
     
-    # Calculate height to maintain aspect ratio (chars are ~2x taller than wide)
+    # Calculate height (chars are ~2x taller than wide)
     aspect_ratio = img.height / img.width
-    height = int(width * aspect_ratio * 0.5)
+    height = int(width * aspect_ratio * 0.55)
     
     # Resize and convert to grayscale
     img = img.resize((width, height), Image.Resampling.LANCZOS)
-    img = img.convert("L")
+    img_gray = img.convert("L")
     
-    # Map pixels to ASCII characters
-    pixels = list(img.getdata())
-    ascii_str = ""
-    for i, pixel in enumerate(pixels):
-        # Map 0-255 to ASCII chars index
-        char_idx = int(pixel / 255 * (len(ASCII_CHARS) - 1))
-        ascii_str += ASCII_CHARS[char_idx]
-        if (i + 1) % width == 0:
-            ascii_str += "\n"
+    pixels = list(img_gray.getdata())
     
-    return ascii_str.strip()
-
-
-def create_scanlines(img, intensity=0.15):
-    """Add CRT scanline effect."""
-    draw = ImageDraw.Draw(img)
-    for y in range(0, img.height, 2):
-        draw.line([(0, y), (img.width, y)], fill=(0, 0, 0), width=1)
+    ascii_lines = []
+    brightness_lines = []
     
-    # Reduce overall brightness for scanline effect
-    enhancer = ImageEnhance.Brightness(img)
-    return enhancer.enhance(1 - intensity * 0.3)
+    for row in range(height):
+        line = ""
+        brightness_row = []
+        for col in range(width):
+            pixel = pixels[row * width + col]
+            # Map pixel to ASCII char
+            char_idx = int(pixel / 255 * (len(ASCII_CHARS) - 1))
+            line += ASCII_CHARS[char_idx]
+            brightness_row.append(pixel)
+        ascii_lines.append(line)
+        brightness_lines.append(brightness_row)
+    
+    return ascii_lines, brightness_lines
 
 
-def create_crt_curve(img):
-    """Add subtle CRT screen curvature effect (vignette)."""
+def create_crt_background(width, height):
+    """Create the bright green CRT scanline background like yetone's."""
+    img = Image.new("RGB", (width, height))
+    pixels = img.load()
+    
+    # Create horizontal scanlines with bright green
+    for y in range(height):
+        for x in range(width):
+            # Alternating bright/dark green lines (every 3 pixels)
+            if y % 3 == 0:
+                # Dark line (gap between phosphor lines)
+                pixels[x, y] = (15, 40, 15)
+            elif y % 3 == 1:
+                # Bright phosphor line
+                pixels[x, y] = (45, 140, 45)
+            else:
+                # Medium line
+                pixels[x, y] = (35, 110, 35)
+    
+    return img
+
+
+def add_crt_curvature(img):
+    """Add CRT screen curvature (darker edges)."""
     width, height = img.size
+    pixels = img.load()
     
-    # Create a vignette mask
-    mask = Image.new("L", (width, height), 255)
-    draw = ImageDraw.Draw(mask)
-    
-    # Radial gradient for vignette
-    center_x, center_y = width // 2, height // 2
-    max_dist = math.sqrt(center_x**2 + center_y**2)
+    center_x, center_y = width / 2, height / 2
+    max_dist = (center_x ** 2 + center_y ** 2) ** 0.5
     
     for y in range(height):
         for x in range(width):
-            dist = math.sqrt((x - center_x)**2 + (y - center_y)**2)
-            # Stronger vignette at edges
-            factor = 1 - (dist / max_dist) ** 2 * 0.4
-            mask.putpixel((x, y), int(255 * max(0.6, factor)))
+            # Distance from center
+            dist = ((x - center_x) ** 2 + (y - center_y) ** 2) ** 0.5
+            # Vignette factor (stronger at edges)
+            factor = 1 - (dist / max_dist) ** 1.5 * 0.5
+            factor = max(0.4, factor)
+            
+            r, g, b = pixels[x, y]
+            pixels[x, y] = (int(r * factor), int(g * factor), int(b * factor))
     
-    # Apply vignette
-    result = Image.new("RGB", img.size)
-    result.paste(img)
-    
-    # Darken edges
-    dark = Image.new("RGB", img.size, (0, 0, 0))
-    result = Image.composite(result, dark, mask)
-    
-    return result
+    return img
 
 
-def add_glow(img, radius=2):
-    """Add phosphor glow effect to text."""
-    # Create a blurred copy
-    glow = img.filter(ImageFilter.GaussianBlur(radius))
-    
-    # Blend original with glow
-    return Image.blend(img, glow, 0.3)
-
-
-def draw_color_blocks(draw, x, y, block_size=20):
-    """Draw neofetch-style color blocks."""
+def draw_color_blocks(draw, x, y, block_size=25, gap=3):
+    """Draw neofetch-style color blocks (muted CRT colors)."""
     colors = [
-        (40, 40, 40),     # Black
-        (255, 85, 85),    # Red
-        (85, 255, 85),    # Green
-        (255, 255, 85),   # Yellow
-        (85, 85, 255),    # Blue
-        (255, 85, 255),   # Magenta
-        (85, 255, 255),   # Cyan
-        (255, 255, 255),  # White
+        (60, 60, 60),      # Dark
+        (180, 100, 80),    # Brownish red
+        (80, 180, 80),     # Green
+        (180, 180, 80),    # Yellow
+        (80, 100, 180),    # Blue (muted)
+        (160, 80, 160),    # Magenta (muted)
+        (80, 180, 160),    # Cyan (muted)
+        (200, 200, 200),   # Light
     ]
     
     for i, color in enumerate(colors):
-        draw.rectangle(
-            [x + i * block_size, y, x + (i + 1) * block_size - 2, y + block_size - 2],
-            fill=color
-        )
+        x1 = x + i * (block_size + gap)
+        draw.rectangle([x1, y, x1 + block_size, y + block_size], fill=color)
 
 
-def create_frame(ascii_art, config, frame_num, total_frames):
-    """Create a single frame of the animation."""
+def create_frame(ascii_lines, brightness_lines, config, frame_num):
+    """Create a single frame matching yetone's style exactly."""
     width = config["width"]
     height = config["height"]
     
-    # Create base image
-    img = Image.new("RGB", (width, height), config["bg_color"])
+    # Create CRT background with scanlines
+    img = create_crt_background(width, height)
     draw = ImageDraw.Draw(img)
     
     # Load fonts
-    font_small = load_font(12)
-    font_medium = load_font(14)
-    font_large = load_font(16)
+    font_ascii = load_font(11)  # Small for ASCII art
+    font_info = load_font(22)   # Larger for info text
+    font_prompt = load_font(20)
     
     # ===== Draw ASCII Art (Left Side) =====
-    ascii_lines = ascii_art.split("\n")
-    ascii_x = 30
-    ascii_y = 40
-    line_height = 10
+    ascii_x = 50
+    ascii_y = 50
+    char_width = 8
+    line_height = 12
     
-    for i, line in enumerate(ascii_lines):
-        # Slight color variation for depth
-        color = config["text_color"]
-        draw.text((ascii_x, ascii_y + i * line_height), line, font=font_small, fill=color)
+    for row_idx, (line, brightness_row) in enumerate(zip(ascii_lines, brightness_lines)):
+        for col_idx, (char, brightness) in enumerate(zip(line, brightness_row)):
+            if char.strip():  # Skip spaces
+                x = ascii_x + col_idx * char_width
+                y = ascii_y + row_idx * line_height
+                
+                # Color based on brightness - bright areas are white/cream
+                if brightness > 200:
+                    color = (255, 255, 245)  # White/cream for highlights
+                elif brightness > 150:
+                    color = (220, 240, 220)  # Light green-white
+                elif brightness > 100:
+                    color = (150, 220, 150)  # Medium bright green
+                elif brightness > 50:
+                    color = (80, 160, 80)    # Medium green
+                else:
+                    color = (50, 120, 50)    # Dark green
+                
+                draw.text((x, y), char, font=font_ascii, fill=color)
     
-    # ===== Draw Info Panel (Right Side) =====
-    info_x = 550
+    # ===== Draw Info Panel (Right Side) - exactly like yetone =====
+    info_x = 650
     info_y = 80
-    line_spacing = 28
+    line_spacing = 42
     
+    # Colors for text
+    label_color = (100, 200, 100)   # Green for labels
+    value_color = (220, 255, 220)   # Bright for values
+    
+    # Info items matching yetone's format exactly
     info_items = [
         ("Name:", config["name"]),
-        ("Affiliation:", config["affiliation"]),
-        ("Focus:", config["focus"]),
+        ("Age:", config["age"]),
+        ("Work:", config["work"]),
         ("OS:", config["os"]),
         ("Editor:", config["editor"]),
-        ("Languages:", config["languages"]),
-        ("Skills:", config["skills"]),
     ]
     
     current_y = info_y
-    for label, value in info_items:
-        # Label in dim color
-        draw.text((info_x, current_y), label, font=font_medium, fill=config["dim_color"])
-        
-        # Value in bright color (handle multiline)
-        value_lines = value.split("\n")
-        label_width = draw.textlength(label, font=font_medium) + 10
-        
-        for j, vline in enumerate(value_lines):
-            y_offset = current_y + j * 18
-            draw.text((info_x + label_width, y_offset), vline, font=font_medium, fill=config["bright_color"])
-        
-        current_y += line_spacing + (len(value_lines) - 1) * 15
     
-    # ===== Draw Color Blocks =====
+    for label, value in info_items:
+        draw.text((info_x, current_y), label, font=font_info, fill=label_color)
+        label_width = draw.textlength(label, font=font_info)
+        draw.text((info_x + label_width + 10, current_y), value, font=font_info, fill=value_color)
+        current_y += line_spacing
+    
+    # Languages (multi-line)
+    draw.text((info_x, current_y), "Languages:", font=font_info, fill=label_color)
+    label_width = draw.textlength("Languages:", font=font_info)
+    lang_x = info_x + label_width + 10
+    for i, lang_line in enumerate(config["languages"]):
+        if i == 0:
+            draw.text((lang_x, current_y), lang_line, font=font_info, fill=value_color)
+        else:
+            # Indent continuation lines
+            draw.text((lang_x + 40, current_y + i * 30), lang_line, font=font_info, fill=value_color)
+    current_y += line_spacing + (len(config["languages"]) - 1) * 30
+    
+    # Skills (multi-line)
+    draw.text((info_x, current_y), "Skills:", font=font_info, fill=label_color)
+    label_width = draw.textlength("Skills:", font=font_info)
+    skill_x = info_x + label_width + 10
+    for i, skill_line in enumerate(config["skills"]):
+        if i == 0:
+            draw.text((skill_x, current_y), skill_line, font=font_info, fill=value_color)
+        else:
+            draw.text((skill_x + 40, current_y + i * 30), skill_line, font=font_info, fill=value_color)
+    current_y += line_spacing + (len(config["skills"]) - 1) * 30
+    
+    # Color blocks
     draw_color_blocks(draw, info_x, current_y + 20)
     
-    # ===== Draw Terminal Prompt =====
-    prompt_y = height - 50
+    # ===== Terminal Prompt at Bottom =====
+    prompt_y = height - 60
     prompt_text = config["prompt"]
-    draw.text((30, prompt_y), prompt_text, font=font_large, fill=config["text_color"])
+    draw.text((50, prompt_y), prompt_text, font=font_prompt, fill=(100, 200, 100))
     
     # Blinking cursor
-    cursor_x = 30 + draw.textlength(prompt_text, font=font_large) + 5
-    if frame_num % 2 == 0:  # Blink every other frame
-        draw.rectangle([cursor_x, prompt_y + 2, cursor_x + 10, prompt_y + 18], fill=config["text_color"])
+    cursor_x = 50 + draw.textlength(prompt_text, font=font_prompt) + 8
+    if frame_num % 2 == 0:
+        draw.rectangle([cursor_x, prompt_y + 3, cursor_x + 12, prompt_y + 22], fill=(150, 255, 150))
     
-    # ===== Apply CRT Effects =====
-    img = add_glow(img, radius=1)
-    img = create_scanlines(img, intensity=0.2)
-    img = create_crt_curve(img)
+    # Apply CRT curvature (darker edges)
+    img = add_crt_curvature(img)
     
-    # Add slight noise/flicker
-    if frame_num % 3 == 0:
-        enhancer = ImageEnhance.Brightness(img)
-        img = enhancer.enhance(0.97)
+    # Add slight glow effect
+    glow = img.filter(ImageFilter.GaussianBlur(1))
+    img = Image.blend(img, glow, 0.15)
     
     return img
 
 
 def generate_crt_gif(image_path, output_path, config):
-    """Generate the full CRT-style GIF animation."""
+    """Generate the CRT-style GIF animation like yetone's."""
     print(f"🖼️  Loading image: {image_path}")
     
-    # Convert image to ASCII art
-    ascii_art = image_to_ascii(image_path, width=config["ascii_width"])
-    print(f"📝 Generated ASCII art ({len(ascii_art.split(chr(10)))} lines)")
+    # Convert image to ASCII art with brightness info
+    ascii_lines, brightness_lines = image_to_ascii_with_brightness(
+        image_path, 
+        width=config["ascii_width"]
+    )
+    print(f"📝 Generated ASCII art ({len(ascii_lines)} lines x {len(ascii_lines[0])} chars)")
     
     # Generate frames
     frames = []
     for i in range(config["frames"]):
         print(f"🎬 Generating frame {i + 1}/{config['frames']}...")
-        frame = create_frame(ascii_art, config, i, config["frames"])
+        frame = create_frame(ascii_lines, brightness_lines, config, i)
         frames.append(frame)
     
     # Save as GIF
@@ -262,7 +289,7 @@ def generate_crt_gif(image_path, output_path, config):
         append_images=frames[1:],
         duration=config["frame_duration"],
         loop=0,
-        optimize=True
+        optimize=False  # Better quality
     )
     
     file_size = os.path.getsize(output_path) / 1024

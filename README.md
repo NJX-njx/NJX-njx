@@ -184,17 +184,6 @@ curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
 
 ---
 
-<!-- ====== TECH STACK (animated icons via skillicons) ====== -->
-<h3 align="center"><code>🛠️ pip list --format=columns</code></h3>
-
-<div align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,docker,kubernetes,linux,git,github,vscode,neovim,fastapi,flask,vue,react,typescript,cpp&theme=dark&perline=8" alt="Tech Stack" />
-  </a>
-</div>
-
----
-
 <!-- ====== SNAKE CONTRIBUTION ANIMATION ====== -->
 <div align="center">
   <picture>
