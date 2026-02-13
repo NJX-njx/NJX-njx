@@ -1,28 +1,16 @@
-<!-- ╔══════════════════════════════════════════════════════════╗ -->
-<!-- ║  NJX-70B-Instruct · GitHub Profile                      ║ -->
-<!-- ║  Dynamic SVG Banner + GitHub Metrics + Animated Effects  ║ -->
-<!-- ╚══════════════════════════════════════════════════════════╝ -->
+<!-- ====== RETRO CRT TERMINAL BANNER (yetone style) ====== -->
+<p align="center">
+  <img width="1000" src="assets/crt_banner.gif" alt="NJX CRT Banner" />
+</p>
 
-<!-- ====== ANIMATED PROFILE BANNER (girl.jpg embedded) ====== -->
-<div align="center">
-  <img src="assets/header_profile.svg" width="100%" alt="NJX Profile Banner">
-</div>
+If you like my work, please consider giving a ⭐ to my projects!
 
-<div align="center">
+---
 
-  <!-- Animated Typing Effect via readme-typing-svg -->
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=60&lines=%F0%9F%A7%A0+AI+Engineer+%7C+Building+Intelligent+Systems;%F0%9F%94%AC+Vision+%2B+LLM+%2B+Agents+%3D+Innovation" alt="Typing SVG" />
-  </a>
-  
-  <br/>
-
-  <!-- Animated Badges / Shields -->
-  <a href="https://github.com/NJX-njx"><img src="https://img.shields.io/github/followers/NJX-njx?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117&color=58a6ff" alt="Followers"/></a>
-  <a href="https://github.com/NJX-njx?tab=repositories"><img src="https://img.shields.io/badge/Repos-Public-bc8cff?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117" alt="Repos"/></a>
-  <img src="https://komarev.com/ghpvc/?username=NJX-njx&style=for-the-badge&color=4ECDC4&labelColor=0d1117&label=PROFILE+VIEWS" alt="Profile Views"/>
-
-</div>
+<!-- ====== GITHUB METRICS (auto-generated, like yetone) ====== -->
+<p align="center">
+  <img src="github-metrics.svg" alt="GitHub Metrics" />
+</p>
 
 ---
 
@@ -159,20 +147,6 @@ curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
 </td>
 </tr>
 </table>
-
----
-
-<!-- ====== GITHUB METRICS (auto-generated SVG) ====== -->
-<h3 align="center" id="user-content-telemetry"><code>📊 cat telemetry/metrics.log</code></h3>
-
-<div align="center">
-
-  <!-- GitHub Metrics SVG — auto-updated daily by GitHub Actions -->
-  <a href="https://github.com/NJX-njx">
-    <img src="github-metrics.svg" alt="GitHub Metrics" width="100%" />
-  </a>
-
-</div>
 
 ---
 
