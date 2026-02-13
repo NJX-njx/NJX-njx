@@ -1,18 +1,34 @@
+<!-- ╔══════════════════════════════════════════════════════════╗ -->
+<!-- ║  NJX-70B-Instruct · GitHub Profile                      ║ -->
+<!-- ║  Dynamic SVG Banner + GitHub Metrics + Animated Effects  ║ -->
+<!-- ╚══════════════════════════════════════════════════════════╝ -->
+
+<!-- ====== ANIMATED PROFILE BANNER (girl.jpg embedded) ====== -->
 <div align="center">
-  <img src="assets/header_interactive.svg" width="100%" alt="NJX Interactive Architecture">
+  <img src="assets/header_profile.svg" width="100%" alt="NJX Profile Banner">
 </div>
 
 <div align="center">
-  <h3><code>NJX-70B-Instruct</code></h3>
-  <p><em>Interactive Model Visualization. Click the nodes above to navigate the system architecture.</em></p>
+
+  <!-- Animated Typing Effect via readme-typing-svg -->
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=60&lines=%F0%9F%A7%A0+AI+Engineer+%7C+Building+Intelligent+Systems;%F0%9F%94%AC+Vision+%2B+LLM+%2B+Agents+%3D+Innovation" alt="Typing SVG" />
+  </a>
+  
+  <br/>
+
+  <!-- Animated Badges / Shields -->
+  <a href="https://github.com/NJX-njx"><img src="https://img.shields.io/github/followers/NJX-njx?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117&color=58a6ff" alt="Followers"/></a>
+  <a href="https://github.com/NJX-njx?tab=repositories"><img src="https://img.shields.io/badge/Repos-Public-bc8cff?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117" alt="Repos"/></a>
+  <img src="https://komarev.com/ghpvc/?username=NJX-njx&style=for-the-badge&color=4ECDC4&labelColor=0d1117&label=PROFILE+VIEWS" alt="Profile Views"/>
 
 </div>
 
 ---
 
-<!-- Terminal / IDE Layout -->
+<!-- ====== TERMINAL / IDE LAYOUT ====== -->
 <div align="center">
-  <em>Note: The terminal/command blocks below are for visual flavor only and are not meant to be executed.</em><br/>
+  <em>Note: The terminal/command blocks below are for visual flavor only and are not meant to be executed.</em>
 </div>
 
 <table>
@@ -146,26 +162,81 @@ curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
 
 ---
 
-<h3 id="user-content-telemetry"><code>cat telemetry/stats.log</code></h3>
+<!-- ====== GITHUB METRICS (auto-generated SVG) ====== -->
+<h3 align="center" id="user-content-telemetry"><code>📊 cat telemetry/metrics.log</code></h3>
 
 <div align="center">
-  <!-- GitHub Trophies -->
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="assets/trophies.svg" alt="NJX-njx Trophies" width="100%" />
+
+  <!-- GitHub Metrics SVG — auto-updated daily by GitHub Actions -->
+  <a href="https://github.com/NJX-njx">
+    <img src="github-metrics.svg" alt="GitHub Metrics" width="100%" />
   </a>
-  <br/>
-  <br/>
-  <!-- GitHub Stats & Activity -->
-  <p>
-    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api?username=NJX-njx&show_icons=true&theme=dark&hide_border=true&bg_color=00000000" height="150" alt="NJX-njx Stats" />
-    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=dark&hide_border=true&bg_color=00000000" height="150" alt="NJX-njx Top Langs" />
-  </p>
+
 </div>
 
 ---
 
+<!-- ====== TROPHIES ====== -->
+<h3 align="center"><code>🏆 cat telemetry/achievements.log</code></h3>
+
+<div align="center">
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="assets/trophies.svg" alt="NJX-njx Trophies" width="100%" />
+  </a>
+</div>
+
+---
+
+<!-- ====== STATS CARDS ====== -->
+<h3 align="center"><code>📈 cat telemetry/stats.log</code></h3>
+
+<div align="center">
+  <p>
+    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api?username=NJX-njx&show_icons=true&theme=dark&hide_border=true&bg_color=00000000" height="165" alt="NJX-njx Stats" />
+    <img src="https://github-readme-stats-roan-phi-27.vercel.app/api/top-langs/?username=NJX-njx&layout=compact&theme=dark&hide_border=true&bg_color=00000000" height="165" alt="NJX-njx Top Langs" />
+  </p>
+
+  <!-- GitHub Streak -->
+  <a href="https://git.io/streak-stats">
+    <img src="https://streak-stats.demolab.com?user=NJX-njx&theme=dark&hide_border=true&background=00000000&ring=58a6ff&fire=ff6b6b&currStreakLabel=58a6ff&sideLabels=c9d1d9&dates=484f58" alt="GitHub Streak" />
+  </a>
+
+  <!-- Activity Graph -->
+  <br/><br/>
+  <a href="https://github.com/NJX-njx">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=NJX-njx&theme=react-dark&hide_border=true&bg_color=00000000&color=58a6ff&line=bc8cff&point=ff6b6b&area=true&area_color=58a6ff" width="95%" alt="Activity Graph" />
+  </a>
+</div>
+
+---
+
+<!-- ====== TECH STACK (animated icons via skillicons) ====== -->
+<h3 align="center"><code>🛠️ pip list --format=columns</code></h3>
+
+<div align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,docker,kubernetes,linux,git,github,vscode,neovim,fastapi,flask,vue,react,typescript,cpp&theme=dark&perline=8" alt="Tech Stack" />
+  </a>
+</div>
+
+---
+
+<!-- ====== SNAKE CONTRIBUTION ANIMATION ====== -->
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake.svg" />
+    <img alt="Snake animation" src="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake-dark.svg" />
+  </picture>
+</div>
+
+---
+
+<!-- ====== FOOTER ====== -->
 <div align="center">
   <a href="mailto:3771829673@qq.com"><code>[ POST REQUEST ]</code></a> · 
   <a href="https://njx-njx.github.io"><code>[ GET BLOG ]</code></a> · 
   <a href="https://github.com/NJX-njx"><code>[ GET REPO ]</code></a>
+  <br/><br/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=twinkling" width="100%"/>
 </div>
