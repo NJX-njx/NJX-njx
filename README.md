@@ -201,5 +201,4 @@ curl -s https://njx-njx.github.io/api/v1/contact.json | python3 -m json.tool
   <a href="https://njx-njx.github.io"><code>[ GET BLOG ]</code></a> · 
   <a href="https://github.com/NJX-njx"><code>[ GET REPO ]</code></a>
   <br/><br/>
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=twinkling" width="100%"/>
 </div>
