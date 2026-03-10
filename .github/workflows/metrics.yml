@@ -1,11 +1,8 @@
 name: Metrics
 
 on:
-  # Schedule daily updates
   schedule: [{cron: "0 23 * * *"}]
-  # (optional) Run workflow manually
   workflow_dispatch:
-  # (optional) Run workflow when pushing on master/main
   push: {branches: ["master", "main"]}
 
 jobs:
@@ -16,9 +13,11 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
+          filename: github-metrics.svg
+          token: ${{ secrets.METRICS_TOKEN || github.token }}
 
           user: NJX-njx
+          template: classic
           base: header, activity, repositories, metadata
           config_timezone: Asia/Shanghai
           repositories_skipped: NJX-njx
@@ -43,3 +42,11 @@ jobs:
           plugin_habits_from: 200
           plugin_habits_languages_limit: 8
           plugin_habits_languages_threshold: 0%
+
+          plugin_wakatime: ${{ secrets.WAKATIME_TOKEN != '' }}
+          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
+          plugin_wakatime_days: 7
+          plugin_wakatime_limit: 5
+          plugin_wakatime_repositories_visibility: all
+          plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
+          plugin_wakatime_url: https://wakatime.com
