@@ -1,10 +1,12 @@
 """
-Generate a cyberpunk-style animated SVG banner with embedded girl.jpg avatar.
-Uses CSS @keyframes animations for dynamic effects that render on GitHub.
+Generate an animated profile SVG banner into `assets/banners/`.
+
+The source avatar is expected to live under `images/portraits/`.
 """
 
 import base64
 import os
+from pathlib import Path
 
 def generate_profile_banner(output_path, image_path):
     """Generate an animated SVG banner with embedded avatar image."""
@@ -348,10 +350,9 @@ def generate_profile_banner(output_path, image_path):
 
 
 if __name__ == "__main__":
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(script_dir)
-    
+    project_root = Path(__file__).resolve().parent.parent
+
     generate_profile_banner(
-        output_path=os.path.join(project_root, "assets", "header_profile.svg"),
-        image_path=os.path.join(project_root, "images", "girl.jpg")
+        output_path=str(project_root / "assets" / "banners" / "header-profile.svg"),
+        image_path=str(project_root / "images" / "portraits" / "girl.jpg"),
     )

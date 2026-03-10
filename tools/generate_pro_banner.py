@@ -1,7 +1,11 @@
-import random
-import math
+"""Generate the polished SVG banner into `assets/banners/`."""
 
-def generate_pro_banner(filename):
+import math
+from pathlib import Path
+import random
+
+
+def generate_pro_banner(output_path):
     width = 1500
     height = 600
     # GitHub Dark Palette
@@ -103,8 +107,12 @@ def generate_pro_banner(filename):
 
     svg_content.append('</svg>')
 
-    with open(filename, 'w') as f:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", encoding="utf-8") as f:
         f.write('\n'.join(svg_content))
 
 if __name__ == "__main__":
-    generate_pro_banner("assets/header_pro.svg")
+    project_root = Path(__file__).resolve().parent.parent
+    generate_pro_banner(project_root / "assets" / "banners" / "header-pro.svg")

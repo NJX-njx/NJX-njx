@@ -1,6 +1,10 @@
-import math
+"""Generate the interactive SVG banner into `assets/banners/`."""
 
-def generate_interactive_banner(filename):
+import math
+from pathlib import Path
+
+
+def generate_interactive_banner(output_path):
     width = 1200
     height = 500
     bg_color = "#0d1117"
@@ -149,8 +153,12 @@ def generate_interactive_banner(filename):
 
     svg_content.append('</svg>')
 
-    with open(filename, 'w') as f:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", encoding="utf-8") as f:
         f.write('\n'.join(svg_content))
 
 if __name__ == "__main__":
-    generate_interactive_banner("assets/header_interactive.svg")
+    project_root = Path(__file__).resolve().parent.parent
+    generate_interactive_banner(project_root / "assets" / "banners" / "header-interactive.svg")

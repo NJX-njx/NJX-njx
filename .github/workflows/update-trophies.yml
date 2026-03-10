@@ -18,7 +18,7 @@ jobs:
         run: |
           set -euo pipefail
           URL="https://github-trophies.vercel.app/?username=NJX-njx&theme=gitdimmed&no-frame=true&no-bg=true&margin-w=4"
-          TMP="assets/trophies.svg.tmp"
+          TMP="assets/widgets/trophies.svg.tmp"
           if ! curl -fsSL "$URL" -o "$TMP"; then
             echo "Download failed; keeping existing trophies.svg"
             exit 0
@@ -27,17 +27,18 @@ jobs:
             echo "Downloaded file is not SVG; aborting update"
             exit 0
           fi
-          mv "$TMP" "assets/trophies.svg"
+          mkdir -p assets/widgets
+          mv "$TMP" "assets/widgets/trophies.svg"
       - name: Commit if changed
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/trophies.svg; then
+          if git diff --quiet -- assets/widgets/trophies.svg; then
             echo "No changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/trophies.svg
+          git add assets/widgets/trophies.svg
           git commit -m "chore: update trophies.svg"
           git push

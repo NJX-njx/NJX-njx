@@ -1,6 +1,10 @@
-import math
+"""Generate the architecture SVG banner into `assets/banners/`."""
 
-def generate_architecture_banner(filename):
+import math
+from pathlib import Path
+
+
+def generate_architecture_banner(output_path):
     width = 1200
     height = 600
     bg_color = "#0d1117"
@@ -98,8 +102,12 @@ def generate_architecture_banner(filename):
 
     svg_content.append('</svg>')
 
-    with open(filename, 'w') as f:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", encoding="utf-8") as f:
         f.write('\n'.join(svg_content))
 
 if __name__ == "__main__":
-    generate_architecture_banner("assets/header_arch.svg")
+    project_root = Path(__file__).resolve().parent.parent
+    generate_architecture_banner(project_root / "assets" / "banners" / "header-arch.svg")
