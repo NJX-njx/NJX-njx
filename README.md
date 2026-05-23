@@ -1,11 +1,9 @@
-<p align="center">
+<div align="center">
   <img width="1000" src="assets/banners/crt-banner.gif" alt="NJX CRT Banner" />
-</p>
-
-<p align="center">
+  <br />
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake.svg" />
     <img width="1000" src="https://raw.githubusercontent.com/NJX-njx/NJX-njx/output/github-snake-dark.svg" alt="GitHub contribution snake" />
   </picture>
-</p>
+</div>

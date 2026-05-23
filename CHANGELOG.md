@@ -5,6 +5,7 @@
 ### README / Profile
 - 将 `README.md` 的主视觉统一为 CRT 风格横幅，当前顶部只展示 `assets/banners/crt-banner.gif`。
 - 在 CRT banner 下方加入 CRT 配色的贡献 snake（`output` 分支，`width=1000` 居中；默认 dark，`<picture>` 支持 light/dark）。
+- 收紧 CRT banner 与贡献 snake 的 README 垂直间距，并为 snake 底部进度条注入 CRT 风格百分比标签。
 - 放弃早期信息过长、结构松散的 profile 呈现，收敛为更聚焦的 banner-first 方案。
 - 将 README 中对旧路径 `assets/crt_banner.gif` 的引用更新为新的规范路径。
 
@@ -34,6 +35,7 @@
 - 保留 trophies 更新路线，并将资源迁移到 `assets/widgets/trophies.svg`。
 - 更新 `.github/workflows/update-trophies.yml`，使其适配新的资源目录结构。
 - 调整 `.github/workflows/snake.yml` 的 `color_dots` / `color_snake`，使贡献 snake 图采用 CRT 终端绿渐变，替代默认 `github` / `github-dark` preset。
+- 为 `.github/workflows/snake.yml` 增加 SVG 后处理步骤，仅在 `output` 分支生成物中叠加百分比文字，不把 snake 生成物提交到 main。
 
 ### Asset Structure
 - 对 `assets` 和 `images` 做了规范化整理，确立规则：普通原始图片放在 `images`，展示资源、生成结果和中间产物放在 `assets`。
