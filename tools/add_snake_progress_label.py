@@ -9,6 +9,7 @@ instead of committing those SVGs to main.
 from __future__ import annotations
 
 import argparse
+import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -47,6 +48,7 @@ def remove_existing_artifacts(svg: ET.Element) -> None:
         "crt-snake-style",
         "crt-snake-surface",
         "crt-progress-track",
+        "crt-progress-label-style",
         "crt-progress-label",
     }
     for child in list(svg):
@@ -64,6 +66,14 @@ def find_rects(svg: ET.Element, class_name: str) -> list[ET.Element]:
 
 def format_number(value: float) -> str:
     return f"{value:.1f}".rstrip("0").rstrip(".")
+
+
+def extract_animation_duration_ms(svg: ET.Element) -> int:
+    for style in svg.findall(svg_tag("style")):
+        match = re.search(r"animation:none\s+(\d+)ms\s+linear\s+infinite", style.text or "")
+        if match:
+            return int(match.group(1))
+    return 34700
 
 
 def compact_progress_bar(
@@ -241,32 +251,62 @@ def inject_crt_surface(
     svg.insert(insert_at + 2, track)
 
 
-def inject_label(path: Path, percentage: str) -> None:
-    tree = ET.parse(path)
-    svg = tree.getroot()
-    min_x, min_y, width, height = parse_view_box(svg)
+def parse_percentage_target(percentage: str) -> int:
+    try:
+        return max(0, min(100, int(percentage.rstrip("%"))))
+    except ValueError:
+        return 100
 
-    remove_existing_artifacts(svg)
 
-    surface_y = -18
-    surface_height = 170
-    progress_bounds = compact_progress_bar(svg, progress_y=122, progress_height=10)
-    progress_x, progress_y, progress_width, progress_height = progress_bounds
+def percentage_sequence(percentage: str) -> list[int]:
+    target = parse_percentage_target(percentage)
+    values = list(range(0, target + 1, 5))
+    if values[-1] != target:
+        values.append(target)
+    return values
 
-    min_y = surface_y
-    height = surface_height
-    svg.set("viewBox", f"{format_number(min_x)} {format_number(min_y)} {format_number(width)} {format_number(height)}")
-    svg.set("width", format_number(width))
-    svg.set("height", format_number(height))
 
-    inject_crt_surface(svg, min_x, min_y, width, height, progress_bounds)
+def build_percentage_animation_style(percentages: list[int], duration_ms: int) -> ET.Element:
+    segment = 100 / len(percentages)
+    rules = [
+        ".crt-pct-frame{opacity:0;animation-duration:"
+        f"{duration_ms}ms;animation-timing-function:steps(1,end);animation-iteration-count:infinite}}"
+    ]
 
-    box_width = 56
-    box_height = 18
-    box_x = progress_x + progress_width - box_width - 2
-    box_y = progress_y - 4
-    text_x = box_x + box_width / 2
-    text_y = box_y + 12.5
+    for index, percentage in enumerate(percentages):
+        start = index * segment
+        is_last = index == len(percentages) - 1
+        end = 100 if is_last else (index + 1) * segment
+        name = f"crtPct{percentage:03d}"
+        rules.append(f".crt-pct-{percentage:03d}" + "{animation-name:" + name + "}")
+        keyframes = (
+            f"@keyframes {name}"
+            "{"
+            f"0%,{start:.3f}%{{opacity:0}}"
+            f"{start:.3f}%,{end:.3f}%{{opacity:1}}"
+        )
+        if not is_last:
+            keyframes += f"{end:.3f}%,100%{{opacity:0}}"
+        rules.append(keyframes + "}")
+
+    style = ET.Element(svg_tag("style"), {"id": "crt-progress-label-style"})
+    style.text = "".join(rules)
+    return style
+
+
+def inject_percentage_label(
+    svg: ET.Element,
+    percentage: str,
+    duration_ms: int,
+    box_x: float,
+    box_y: float,
+    box_width: float,
+    box_height: float,
+    text_x: float,
+    text_y: float,
+) -> None:
+    percentages = percentage_sequence(percentage)
+    svg.append(build_percentage_animation_style(percentages, duration_ms))
 
     group = ET.Element(
         svg_tag("g"),
@@ -309,27 +349,76 @@ def inject_label(path: Path, percentage: str) -> None:
             "stroke-width": "1",
         },
     )
-    ET.SubElement(
-        group,
-        svg_tag("text"),
-        {
-            "x": format_number(text_x + 1),
-            "y": format_number(text_y + 1),
-            "fill": "#68FF7E",
-            "opacity": "0.32",
-        },
-    ).text = percentage
-    ET.SubElement(
-        group,
-        svg_tag("text"),
-        {
-            "x": format_number(text_x),
-            "y": format_number(text_y),
-            "fill": "#D8FFC4",
-        },
-    ).text = percentage
+
+    for percentage_value in percentages:
+        frame = ET.SubElement(
+            group,
+            svg_tag("g"),
+            {"class": f"crt-pct-frame crt-pct-{percentage_value:03d}"},
+        )
+        text = f"{percentage_value}%"
+        ET.SubElement(
+            frame,
+            svg_tag("text"),
+            {
+                "x": format_number(text_x + 1),
+                "y": format_number(text_y + 1),
+                "fill": "#68FF7E",
+                "opacity": "0.32",
+            },
+        ).text = text
+        ET.SubElement(
+            frame,
+            svg_tag("text"),
+            {
+                "x": format_number(text_x),
+                "y": format_number(text_y),
+                "fill": "#D8FFC4",
+            },
+        ).text = text
 
     svg.append(group)
+
+
+def inject_label(path: Path, percentage: str) -> None:
+    tree = ET.parse(path)
+    svg = tree.getroot()
+    min_x, min_y, width, height = parse_view_box(svg)
+    duration_ms = extract_animation_duration_ms(svg)
+
+    remove_existing_artifacts(svg)
+
+    surface_y = -18
+    surface_height = 170
+    progress_bounds = compact_progress_bar(svg, progress_y=122, progress_height=10)
+    progress_x, progress_y, progress_width, progress_height = progress_bounds
+
+    min_y = surface_y
+    height = surface_height
+    svg.set("viewBox", f"{format_number(min_x)} {format_number(min_y)} {format_number(width)} {format_number(height)}")
+    svg.set("width", format_number(width))
+    svg.set("height", format_number(height))
+
+    inject_crt_surface(svg, min_x, min_y, width, height, progress_bounds)
+
+    box_width = 56
+    box_height = 18
+    box_x = progress_x + progress_width - box_width - 2
+    box_y = progress_y - 4
+    text_x = box_x + box_width / 2
+    text_y = box_y + 12.5
+
+    inject_percentage_label(
+        svg,
+        percentage,
+        duration_ms,
+        box_x,
+        box_y,
+        box_width,
+        box_height,
+        text_x,
+        text_y,
+    )
     tree.write(path, encoding="unicode", xml_declaration=False)
     path.write_text(path.read_text(encoding="utf-8") + "\n", encoding="utf-8")
 
