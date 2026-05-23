@@ -14,7 +14,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: github-metrics.svg
-          token: ${{ secrets.METRICS_TOKEN || github.token }}
+          token: ${{ github.token }}
 
           user: NJX-njx
           template: classic
