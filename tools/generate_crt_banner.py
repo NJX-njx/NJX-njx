@@ -13,17 +13,21 @@ from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFo
 CONFIG = {
     "name": "NJX",
     "age": "19",
-    "work": "BIT · CS",
-    "os": "Windows / macOS",
-    "editor": ["Cursor / VS Code", "Opencode / Trae"],
-    "languages": ["Python, CUDA,", "C/C++, JavaScript,", "TypeScript, Bash"],
+    "work": ["BIT CS", "Agent Engineer"],
+    "editor": ["Cursor / VS Code", "Claude Code / Codex", "OpenCode / Trae"],
+    "languages": ["Python, CUDA, C/C++", "TypeScript, JavaScript", "Bash, Go"],
     "skills": [
-        "LLM fine-tuning,",
-        "Prompt/context eng,",
-        "Distributed training,",
-        "LLM evaluation",
+        "Agentic coding systems",
+        "LLM evals & benchmarks",
+        "AI infra & training",
+        "Context engineering",
     ],
-    "recent": ["Watching The Young", "Brewmaster's Adventure"],
+    "experience": [
+        "AI researcher & builder",
+        "Open-source agent projects",
+        "Model eval / benchmarks",
+        "Research-to-product demos",
+    ],
     "prompt": "njx@mbp$",
     "width": 1200,
     "height": 700,
@@ -349,60 +353,47 @@ def draw_portrait(image: Image.Image, portrait_panel: Image.Image, frame_num: in
 
 
 def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
-    font_main = load_font(18)
-    font_value = load_font(18)
+    font_header = load_font(17)
+    font_main = load_font(16)
+    font_value = load_font(16)
     font_prompt = load_font(18)
     green = (149, 255, 121, 255)
     bright = (216, 255, 196, 255)
+    dim = (96, 198, 91, 220)
     glow = (104, 255, 109, 150)
 
     x = 742
-    y = 70
-    line_gap = 40
     value_x = x + 118
+    line_gap = 25
+    section_gap = 8
+    panel_right = 1144
 
-    items = [
-        ("Name:", cfg["name"]),
-        ("Age:", cfg["age"]),
-        ("Work:", cfg["work"]),
-        ("OS:", cfg["os"]),
-    ]
+    draw_glow_text(image, (x, 58), "PROFILE.SYS", font_header, bright, glow, blur_radius=5)
+    draw_glow_text(image, (x + 264, 58), "ONLINE", font_main, green, glow, blur_radius=4)
+    header_draw = ImageDraw.Draw(image)
+    header_draw.line((x, 88, panel_right, 88), fill=(80, 255, 103, 92), width=1)
+    for dot_x in (panel_right - 46, panel_right - 30, panel_right - 14):
+        header_draw.rectangle((dot_x, 62, dot_x + 6, 68), fill=(130, 255, 118, 150))
 
-    for label, value in items:
+    def draw_field(y: int, label: str, lines) -> int:
+        if isinstance(lines, str):
+            lines = [lines]
         draw_glow_text(image, (x, y), label, font_main, green, glow, blur_radius=4)
-        draw_glow_text(image, (value_x, y), value, font_value, bright, glow, blur_radius=4)
-        y += line_gap
+        for index, line in enumerate(lines):
+            line_y = y + index * line_gap
+            if index > 0:
+                draw_glow_text(image, (value_x - 18, line_y), ">", font_main, dim, glow, blur_radius=3)
+            draw_glow_text(image, (value_x, line_y), line, font_value, bright, glow, blur_radius=4)
+        return y + len(lines) * line_gap + section_gap
 
-    draw_glow_text(image, (x, y), "Editor:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(image, (value_x, y), cfg["editor"][0], font_value, bright, glow, blur_radius=4)
-    y += 34
-    for line in cfg["editor"][1:]:
-        draw_glow_text(image, (value_x, y), line, font_value, bright, glow, blur_radius=4)
-        y += 34
-
-    y += 8
-    draw_glow_text(image, (x, y), "Languages:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(image, (value_x, y), cfg["languages"][0], font_value, bright, glow, blur_radius=4)
-    y += 34
-    for line in cfg["languages"][1:]:
-        draw_glow_text(image, (value_x, y), line, font_value, bright, glow, blur_radius=4)
-        y += 34
-
-    y += 8
-    draw_glow_text(image, (x, y), "Skills:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(image, (value_x, y), cfg["skills"][0], font_value, bright, glow, blur_radius=4)
-    y += 34
-    for line in cfg["skills"][1:]:
-        draw_glow_text(image, (value_x, y), line, font_value, bright, glow, blur_radius=4)
-        y += 34
-
-    y += 10
-    draw_glow_text(image, (x, y), "Recent:", font_main, green, glow, blur_radius=4)
-    draw_glow_text(image, (value_x, y), cfg["recent"][0], font_value, bright, glow, blur_radius=4)
-    y += 34
-    for line in cfg["recent"][1:]:
-        draw_glow_text(image, (value_x, y), line, font_value, bright, glow, blur_radius=4)
-        y += 34
+    y = 104
+    y = draw_field(y, "Name:", cfg["name"])
+    y = draw_field(y, "Age:", cfg["age"])
+    y = draw_field(y, "Work:", cfg["work"]) + 4
+    y = draw_field(y, "Editor:", cfg["editor"])
+    y = draw_field(y, "Languages:", cfg["languages"])
+    y = draw_field(y, "Skills:", cfg["skills"])
+    draw_field(y, "Experience:", cfg["experience"])
 
     prompt_y = 628
     draw_glow_text(image, (48, prompt_y), cfg["prompt"], font_prompt, bright, glow, blur_radius=4)

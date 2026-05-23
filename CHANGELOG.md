@@ -16,13 +16,14 @@
 - 保留右侧终端信息面板和整体 CRT 外框风格，使横幅更像“原图进入老显示器”，而不是“人物被重新像素化”。
 
 ### Right Panel
-- 移除右侧底部的色块装饰条。
-- 更新 `Editor` 字段为两行展示：`Cursor / VS Code` 与 `Opencode / Trae`。
-- 更新 `Languages` 字段为三行展示：`Python, CUDA,`、`C/C++, JavaScript,`、`TypeScript, Bash`。
-- 更新 `Skills` 字段为英文方向描述：`LLM fine-tuning`、`Prompt/context eng`、`Distributed training`、`LLM evaluation`。
-- 新增 `Recent` 字段，内容为 `Watching The Young` 与 `Brewmaster's Adventure`。
-- 修正 `Recent` 的断行方式，使其在 `Young` 后换行。
-- 统一右侧所有值列的起始对齐位置，修复不同字段横向缩进不一致的问题。
+- 将右侧信息面板升级为 `PROFILE.SYS / ONLINE` 风格的 CRT terminal profile，并增加顶部状态线与像素状态点。
+- 移除 `OS` 字段，减少无关系统描述。
+- 将 `Work` 字段更新为 `BIT CS` 与 `Agent Engineer` 两行展示。
+- 将 `Editor` 字段扩展为 `Cursor / VS Code`、`Claude Code / Codex`、`OpenCode / Trae`。
+- 将 `Languages` 字段压缩为三行展示：`Python, CUDA, C/C++`、`TypeScript, JavaScript`、`Bash, Go`。
+- 将 `Skills` 字段优化为更聚焦的英文方向：`Agentic coding systems`、`LLM evals & benchmarks`、`AI infra & training`、`Context engineering`。
+- 移除 `Recent` 字段，并替换为 `Experience` 字段，概括展示 `AI researcher & builder`、`Open-source agent projects`、`Model eval / benchmarks`、`Research-to-product demos`。
+- 收紧右侧排版间距与字号，统一多行字段的 `>` 子项缩进，避免右侧文本拥挤。
 
 ### Metrics / Widgets / Workflows
 - 保留并恢复 `metrics` 路线能力，但不再作为 README 当前主视觉展示。
@@ -47,6 +48,8 @@
 - 对资源文件进行了更规范的 kebab-case 重命名，例如 `crt_banner.gif` 调整为 `crt-banner.gif`，`header_profile.svg` 调整为 `header-profile.svg`。
 
 ### Tooling Cleanup
+- 更新 `.gitignore`，忽略 Python 缓存、`.pyc` 文件和本地 `.venv/`。
+- 从仓库中移除已提交的 `tools/__pycache__/*.pyc` 缓存文件。
 - 统一整理 `tools` 目录下多支历史 banner 生成脚本的说明文字与输出约定。
 - 为 `generate_banner.py`、`generate_arch_banner.py`、`generate_interactive_banner.py`、`generate_pro_banner.py`、`generate_profile_banner.py`、`generate_final_banner.py`、`generate_crt_banner.py` 补充或统一模块说明。
 - 统一这些脚本的输出路径风格，使其全部指向新的 `assets/banners/` 或对应规范目录。

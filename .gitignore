@@ -1,5 +1,10 @@
 .DS_Store
 
+# Python / local environment
+__pycache__/
+*.py[cod]
+.venv/
+
 # VS Code 工作区文件
 *.code-workspace
 
