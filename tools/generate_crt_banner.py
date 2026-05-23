@@ -63,6 +63,24 @@ def draw_glow_text(image: Image.Image, position: tuple[int, int], text: str, fon
     ImageDraw.Draw(image).text(position, text, font=font, fill=fill)
 
 
+def draw_glitch_header(image: Image.Image, position: tuple[int, int], text: str, font, frame_num: int, fill, glow) -> None:
+    draw_glow_text(image, position, text, font, fill, glow, blur_radius=5)
+    if frame_num not in (1, 4):
+        return
+
+    x, y = position
+    draw = ImageDraw.Draw(image)
+    text_layer = Image.new("RGBA", (150, 28), (0, 0, 0, 0))
+    ImageDraw.Draw(text_layer).text((0, 0), text, font=font, fill=(150, 255, 126, 120))
+    slice_top = text_layer.crop((0, 5, 92, 10))
+    slice_bottom = text_layer.crop((34, 17, 132, 22))
+    image.alpha_composite(slice_top, dest=(x + 5, y + 4))
+    image.alpha_composite(slice_bottom, dest=(x - 4, y + 15))
+    draw.line((x - 2, y + 18, x + 92, y + 18), fill=(134, 255, 130, 95), width=1)
+    if frame_num == 4:
+        draw.text((x + 104, y), "::", font=font, fill=(149, 255, 121, 105))
+
+
 def left_screen_color(y: int, frame_num: int) -> tuple[int, int, int]:
     phase = (y + frame_num) % 4
     if phase == 0:
@@ -250,7 +268,6 @@ def preprocess_portrait(portrait: Image.Image) -> tuple[Image.Image, Image.Image
 
 def build_portrait_blocks(project_root: Path) -> list[tuple[int, int, tuple[int, int, int], tuple[int, int, int]]]:
     source_path = project_root / CONFIG["portrait_source"]
-    print(f"debugging: loading portrait source from {source_path}")
     source = Image.open(source_path).convert("RGB")
     focused_source = crop_focus_portrait(source)
     auto_mask = build_subject_mask(focused_source)
@@ -274,7 +291,6 @@ def build_portrait_blocks(project_root: Path) -> list[tuple[int, int, tuple[int,
             fill, accent = palette_for_luminance(luminance, edge_strength)
             blocks.append((col, row, fill, accent))
 
-    print(f"debugging: extracted {len(blocks)} portrait blocks from source image")
     return blocks
 
 
@@ -284,7 +300,6 @@ def fit_cover(image: Image.Image, size: tuple[int, int], centering: tuple[float,
 
 def prepare_portrait_panel(project_root: Path, cfg: dict) -> Image.Image:
     source_path = project_root / cfg["portrait_source"]
-    print(f"debugging: loading direct portrait panel from {source_path}")
     source = Image.open(source_path).convert("RGB")
     focused_source = crop_focus_portrait(source)
 
@@ -307,7 +322,6 @@ def prepare_portrait_panel(project_root: Path, cfg: dict) -> Image.Image:
     offset_x = (panel.width - contained.width) // 2 - 10
     offset_y = (panel.height - contained.height) // 2 + 2
     panel.alpha_composite(contained, dest=(offset_x, offset_y))
-    print("debugging: prepared direct portrait panel")
     return panel
 
 
@@ -368,7 +382,7 @@ def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
     section_gap = 8
     panel_right = 1144
 
-    draw_glow_text(image, (x, 58), "PROFILE.SYS", font_header, bright, glow, blur_radius=5)
+    draw_glitch_header(image, (x, 58), "PROFILE.SYS", font_header, frame_num, bright, glow)
     draw_glow_text(image, (x + 264, 58), "ONLINE", font_main, green, glow, blur_radius=4)
     header_draw = ImageDraw.Draw(image)
     header_draw.line((x, 88, panel_right, 88), fill=(80, 255, 103, 92), width=1)
@@ -453,11 +467,9 @@ def create_frame(cfg: dict, frame_num: int, portrait_panel: Image.Image) -> Imag
 
 
 def generate_crt_gif(output_path: Path, cfg: dict) -> None:
-    print("debugging: generating direct-portrait crt banner")
     portrait_panel = prepare_portrait_panel(Path(__file__).resolve().parent.parent, cfg)
     frames = []
     for index in range(cfg["frames"]):
-        print(f"debugging: rendering direct portrait frame {index + 1}/{cfg['frames']}")
         frames.append(create_frame(cfg, index, portrait_panel))
 
     frames[0].save(
@@ -468,13 +480,13 @@ def generate_crt_gif(output_path: Path, cfg: dict) -> None:
         loop=0,
         optimize=False,
     )
-    print(f"debugging: saved direct portrait banner to {output_path}")
 
 
 def main() -> None:
     project_root = Path(__file__).resolve().parent.parent
     output_gif = project_root / "assets" / "banners" / "crt-banner.gif"
     generate_crt_gif(output_gif, CONFIG)
+    print(f"Saved: {output_gif}")
 
 
 if __name__ == "__main__":
