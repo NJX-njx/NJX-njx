@@ -4,17 +4,18 @@
 
 ### README / Profile
 - 将 `README.md` 的主视觉统一为 CRT 风格横幅，当前顶部只展示 `assets/banners/crt-banner.gif`。
+- 在 CRT banner 下方加入 CRT 配色的贡献 snake（`output` 分支，`width=1000` 居中；默认 dark，`<picture>` 支持 light/dark）。
 - 放弃早期信息过长、结构松散的 profile 呈现，收敛为更聚焦的 banner-first 方案。
 - 将 README 中对旧路径 `assets/crt_banner.gif` 的引用更新为新的规范路径。
 
 ### CRT Banner
 - 重写并持续打磨 `tools/generate_crt_banner.py`，将其确立为当前主路线横幅生成器。
 - 横幅生成路线从“程序化像素人物”逐步切换为“原图直接融入 CRT 屏幕”，以保留眼睛、发丝、表情和手势等关键细节。
-- 左侧人物区改为直接读取 `images/portraits/portrait-reference.jpg`，并叠加 CRT 风格的扫描线、泛光、闪烁、暗角和显示器质感。
+- 左侧人物区改为直接读取 `images/portraits/portrait-reference.jpg`，并叠加 CRT 风格的扫描线、泛光、暗角和显示器质感。
 - 调整左侧图像裁切范围，使原图内容显示更多，不再过度近景裁切。
 - 减弱左侧整体绿调，恢复原图的眼睛、发丝和面部层次。
 - 保留右侧终端信息面板和整体 CRT 外框风格，使横幅更像“原图进入老显示器”，而不是“人物被重新像素化”。
-- 为右侧 `PROFILE.SYS` 标题增加轻量 glitch 切片效果，使少数动画帧出现终端信号扰动，同时保持标题可读。
+- 移除 `PROFILE.SYS` 标题 glitch 切片、全局亮度闪烁、扫描线相位动画与命令行光标闪烁，改为静态单帧 CRT 横幅。
 
 ### Right Panel
 - 将右侧信息面板升级为 `PROFILE.SYS / ONLINE` 风格的 CRT terminal profile，并增加顶部状态线与像素状态点。
