@@ -31,7 +31,7 @@ CONFIG = {
     "prompt": "njx@mbp$",
     "width": 1200,
     "height": 700,
-    "frames": 6,
+    "frames": 1,
     "frame_duration": 220,
     "portrait_source": "images/portraits/portrait-reference.jpg",
 }
@@ -63,26 +63,8 @@ def draw_glow_text(image: Image.Image, position: tuple[int, int], text: str, fon
     ImageDraw.Draw(image).text(position, text, font=font, fill=fill)
 
 
-def draw_glitch_header(image: Image.Image, position: tuple[int, int], text: str, font, frame_num: int, fill, glow) -> None:
-    draw_glow_text(image, position, text, font, fill, glow, blur_radius=5)
-    if frame_num not in (1, 4):
-        return
-
-    x, y = position
-    draw = ImageDraw.Draw(image)
-    text_layer = Image.new("RGBA", (150, 28), (0, 0, 0, 0))
-    ImageDraw.Draw(text_layer).text((0, 0), text, font=font, fill=(150, 255, 126, 120))
-    slice_top = text_layer.crop((0, 5, 92, 10))
-    slice_bottom = text_layer.crop((34, 17, 132, 22))
-    image.alpha_composite(slice_top, dest=(x + 5, y + 4))
-    image.alpha_composite(slice_bottom, dest=(x - 4, y + 15))
-    draw.line((x - 2, y + 18, x + 92, y + 18), fill=(134, 255, 130, 95), width=1)
-    if frame_num == 4:
-        draw.text((x + 104, y), "::", font=font, fill=(149, 255, 121, 105))
-
-
-def left_screen_color(y: int, frame_num: int) -> tuple[int, int, int]:
-    phase = (y + frame_num) % 4
+def left_screen_color(y: int) -> tuple[int, int, int]:
+    phase = y % 4
     if phase == 0:
         return (190, 255, 156)
     if phase == 1:
@@ -92,18 +74,18 @@ def left_screen_color(y: int, frame_num: int) -> tuple[int, int, int]:
     return (148, 226, 118)
 
 
-def right_screen_color(y: int, frame_num: int) -> tuple[int, int, int]:
-    base = 12 + ((y + frame_num) % 5) * 2
+def right_screen_color(y: int) -> tuple[int, int, int]:
+    base = 12 + (y % 5) * 2
     return (base, 22 + base, base)
 
 
-def draw_screen_background(draw: ImageDraw.ImageDraw, cfg: dict, frame_num: int) -> None:
+def draw_screen_background(draw: ImageDraw.ImageDraw, cfg: dict) -> None:
     left_x, top_y, left_w, screen_h = 34, 34, 664, 632
     right_x, right_w = 706, 460
 
     for y in range(top_y, top_y + screen_h):
-        draw.line((left_x, y, left_x + left_w, y), fill=left_screen_color(y, frame_num))
-        draw.line((right_x, y, right_x + right_w, y), fill=right_screen_color(y, frame_num))
+        draw.line((left_x, y, left_x + left_w, y), fill=left_screen_color(y))
+        draw.line((right_x, y, right_x + right_w, y), fill=right_screen_color(y))
 
     # subtle phosphor dots on the bright panel
     for y in range(top_y + 6, top_y + screen_h, 18):
@@ -325,7 +307,7 @@ def prepare_portrait_panel(project_root: Path, cfg: dict) -> Image.Image:
     return panel
 
 
-def stylize_portrait_panel(portrait_panel: Image.Image, frame_num: int) -> Image.Image:
+def stylize_portrait_panel(portrait_panel: Image.Image) -> Image.Image:
     panel_rgb = portrait_panel.convert("RGB")
     panel_rgb = ImageEnhance.Color(panel_rgb).enhance(0.92)
     panel_rgb = ImageEnhance.Contrast(panel_rgb).enhance(1.08)
@@ -345,8 +327,7 @@ def stylize_portrait_panel(portrait_panel: Image.Image, frame_num: int) -> Image
     width, height = panel.size
 
     for y in range(0, height, 4):
-        bright_alpha = 6 + ((frame_num + y) % 3) * 3
-        overlay_draw.line((0, y, width, y), fill=(170, 255, 188, bright_alpha))
+        overlay_draw.line((0, y, width, y), fill=(170, 255, 188, 9))
         dark_y = min(y + 2, height - 1)
         overlay_draw.line((0, dark_y, width, dark_y), fill=(4, 18, 4, 10))
 
@@ -361,12 +342,12 @@ def stylize_portrait_panel(portrait_panel: Image.Image, frame_num: int) -> Image
     return panel
 
 
-def draw_portrait(image: Image.Image, portrait_panel: Image.Image, frame_num: int) -> None:
-    styled_panel = stylize_portrait_panel(portrait_panel, frame_num)
+def draw_portrait(image: Image.Image, portrait_panel: Image.Image) -> None:
+    styled_panel = stylize_portrait_panel(portrait_panel)
     image.alpha_composite(styled_panel, dest=(34, 34))
 
 
-def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
+def draw_info_panel(image: Image.Image, cfg: dict) -> None:
     font_header = load_font(17)
     font_main = load_font(16)
     font_value = load_font(16)
@@ -382,7 +363,7 @@ def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
     section_gap = 8
     panel_right = 1144
 
-    draw_glitch_header(image, (x, 58), "PROFILE.SYS", font_header, frame_num, bright, glow)
+    draw_glow_text(image, (x, 58), "PROFILE.SYS", font_header, bright, glow, blur_radius=5)
     draw_glow_text(image, (x + 264, 58), "ONLINE", font_main, green, glow, blur_radius=4)
     header_draw = ImageDraw.Draw(image)
     header_draw.line((x, 88, panel_right, 88), fill=(80, 255, 103, 92), width=1)
@@ -411,21 +392,18 @@ def draw_info_panel(image: Image.Image, cfg: dict, frame_num: int) -> None:
 
     prompt_y = 628
     draw_glow_text(image, (48, prompt_y), cfg["prompt"], font_prompt, bright, glow, blur_radius=4)
-    if frame_num % 2 == 0:
-        cursor_x = int(48 + ImageDraw.Draw(image).textlength(cfg["prompt"], font=font_prompt) + 8)
-        cursor_layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
-        cursor_draw = ImageDraw.Draw(cursor_layer)
-        cursor_draw.rectangle((cursor_x, prompt_y + 2, cursor_x + 12, prompt_y + 22), fill=(222, 255, 215, 255))
-        cursor_layer = cursor_layer.filter(ImageFilter.GaussianBlur(3))
-        image.alpha_composite(cursor_layer)
-        ImageDraw.Draw(image).rectangle((cursor_x, prompt_y + 2, cursor_x + 12, prompt_y + 22), fill=(222, 255, 215, 255))
+    cursor_x = int(48 + ImageDraw.Draw(image).textlength(cfg["prompt"], font=font_prompt) + 8)
+    cursor_layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    cursor_draw = ImageDraw.Draw(cursor_layer)
+    cursor_draw.rectangle((cursor_x, prompt_y + 2, cursor_x + 12, prompt_y + 22), fill=(222, 255, 215, 255))
+    cursor_layer = cursor_layer.filter(ImageFilter.GaussianBlur(3))
+    image.alpha_composite(cursor_layer)
+    ImageDraw.Draw(image).rectangle((cursor_x, prompt_y + 2, cursor_x + 12, prompt_y + 22), fill=(222, 255, 215, 255))
 
 
-def add_monitor_effects(image: Image.Image, frame_num: int) -> Image.Image:
+def add_monitor_effects(image: Image.Image) -> Image.Image:
     width, height = image.size
     base = image.convert("RGB")
-    flicker = 0.988 + (frame_num % 3) * 0.014
-    base = ImageEnhance.Brightness(base).enhance(flicker)
 
     bloom = base.filter(ImageFilter.GaussianBlur(2.2))
     base = Image.blend(base, bloom, 0.24)
@@ -455,27 +433,22 @@ def add_monitor_effects(image: Image.Image, frame_num: int) -> Image.Image:
     return final.convert("RGB")
 
 
-def create_frame(cfg: dict, frame_num: int, portrait_panel: Image.Image) -> Image.Image:
+def create_frame(cfg: dict, portrait_panel: Image.Image) -> Image.Image:
     image = Image.new("RGBA", (cfg["width"], cfg["height"]), (5, 9, 5, 255))
     draw = ImageDraw.Draw(image)
 
     draw.rounded_rectangle((16, 16, 1184, 684), radius=34, fill=(7, 12, 7))
-    draw_screen_background(draw, cfg, frame_num)
-    draw_portrait(image, portrait_panel, frame_num)
-    draw_info_panel(image, cfg, frame_num)
-    return add_monitor_effects(image, frame_num)
+    draw_screen_background(draw, cfg)
+    draw_portrait(image, portrait_panel)
+    draw_info_panel(image, cfg)
+    return add_monitor_effects(image)
 
 
 def generate_crt_gif(output_path: Path, cfg: dict) -> None:
     portrait_panel = prepare_portrait_panel(Path(__file__).resolve().parent.parent, cfg)
-    frames = []
-    for index in range(cfg["frames"]):
-        frames.append(create_frame(cfg, index, portrait_panel))
-
-    frames[0].save(
+    frame = create_frame(cfg, portrait_panel)
+    frame.save(
         output_path,
-        save_all=True,
-        append_images=frames[1:],
         duration=cfg["frame_duration"],
         loop=0,
         optimize=False,
